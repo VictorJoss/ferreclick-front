@@ -1,0 +1,23 @@
+<div class="flex items-center space-x-2">
+    <!-- Ícono de cuenta de usuario -->
+    <a routerLink="/login" routerLinkActive="active" ariaCurrentWhenActive="page">
+        <div class="icon-circle">
+            <svg class="h-10 w-10 fill-primary hover:fill-white" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"><path d="M0 0h48v48H0z" fill="none"/><path d="M31.278 25.525C34.144 23.332 36 19.887 36 16c0-6.627-5.373-12-12-12S12 9.373 12 16c0 3.887 1.856 7.332 4.722 9.525C9.84 28.531 5 35.665 5 44h38c0-8.335-4.84-15.469-11.722-18.475zM16 16c0-4.411 3.589-8 8-8s8 3.589 8 8-3.589 8-8 8-8-3.589-8-8zm8 12c6.977 0 12.856 5.107 14.525 12H9.475C11.144 33.107 17.023 28 24 28z"/></svg>
+        </div>
+    </a>
+    <!-- Ícono de carrito de compras -->
+     @if (!isAdminLoggedIn) {
+        <div class="icon-circle">
+            <svg class="h-10 w-10 fill-primary hover:fill-white" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M2 1a1 1 0 0 0 0 2h1.22l3.563 14.257A3 3 0 1 0 10.83 19h4.342A3 3 0 1 0 18 17H8.78l-.5-2H18c2.064 0 3.302-1.304 3.989-2.744.67-1.407.904-3.09.986-4.312C23.088 6.24 21.68 5 20.121 5H5.781L5.16 2.515A2 2 0 0 0 3.22 1H2Zm16 12H7.78l-1.5-6h13.841c.553 0 .885.407.858.81-.076 1.142-.288 2.522-.795 3.585C19.692 12.425 19.02 13 18 13Zm0 7.994a.994.994 0 1 1 0-1.988.994.994 0 0 1 0 1.988ZM7.006 20a.994.994 0 1 0 1.988 0 .994.994 0 0 0-1.988 0Z"/></svg>
+        </div>
+     }
+
+
+    <!-- icono para salir  -->
+     @if (isCustomerLoggedIn || isAdminLoggedIn) {
+        <div class="icon-circle" (click)="logout()">
+            <svg class="h-12 w-12 fill-primary hover:fill-white" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M8.25 5.25 9 4.5h9l.75.75v13.5l-.75.75H9l-.75-.75V16.5h1.5V18h7.5V6h-7.5v1.5h-1.5V5.25Z"/><path fill-rule="evenodd" clip-rule="evenodd" d="M7.06 12.75h7.19v-1.5H7.06l1.72-1.72-1.06-1.06L4.19 12l3.53 3.53 1.06-1.06-1.72-1.72Z"/></svg>
+        </div>
+     }
+
+  </div>

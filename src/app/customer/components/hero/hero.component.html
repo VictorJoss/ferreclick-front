@@ -1,0 +1,13 @@
+<div class="slider-container">
+    <button class="arrow left" (click)="prevSlide()">&#10094;</button>
+    <div class="slider">
+      <img 
+        [src]="products[currentIndex].image" 
+        alt="Product Image" 
+        class="slide-image"
+        [style.opacity]="currentIndex === currentIndex ? 1 : 0"
+      />
+    </div>
+    <button class="arrow right" (click)="nextSlide()">&#10095;</button>
+  </div>
+  

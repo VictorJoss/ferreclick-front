@@ -1,0 +1,26 @@
+<!-- NavBar Structure -->
+<ul class="w-full h-40 flex flex-col justify-around items-center bg-white md:flex-row md:justify-around md:px-5 md:h-28">
+    <li class="w-full flex flex-row justify-evenly items-center md:w-auto">
+      <a routerLink="/" routerLinkActive="active" ariaCurrentWhenActive="page"><img src="LogoGreen.png" alt="LogoEmpresa" class="h-20 w-auto"></a>
+      <app-navbar-buttons class="md:hidden"></app-navbar-buttons>
+   </li>
+    <li class="w-full flex-row flex relative px-4 md:w-1/2">
+      <input
+        type="text"
+        placeholder="Buscar productos..."
+        [(ngModel)]="searchTerm"
+        (keyup.enter)="onSearch()"
+        class="appearance-none bg-white border-2 border-primary w-full text-gray-700 py-3 pl-4 pr-10 rounded-full leading-tight focus:outline-none"
+      />
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="absolute right-8 top-3 h-5 w-5 text-gray-500 pointer-events-none"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35m2.85-6.15a7 7 0 11-14 0 7 7 0 0114 0z" />
+      </svg>
+    </li>
+    <li class="hidden md:block"><app-navbar-buttons></app-navbar-buttons></li>
+ </ul>
