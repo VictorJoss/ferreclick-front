@@ -45,16 +45,17 @@ export class SignupComponent {
 
     const { confirmPassword: _, ...formValue } = this.form().value;
 
-    // this.authService.register(this.form().value).subscribe({
-    //   next: (response) => {
-    //     alert('Registro exitoso');
-    //     this.router.navigateByUrl('/login');
-    //   },
-    //   error: (error) => {
-    //     alert('Registro falló, intente nuevamente');
-    //     console.log(error);
-    //   }
-    // })
+    const { name, username, email, role } = this.form().value;
+    this.authService.register(name, username, email, password, role).subscribe({
+      next: (response) => {
+        console.log('Registro exitoso');
+        this.router.navigateByUrl('/login');
+      },
+      error: (error) => {
+        console.log('Registro falló, intente nuevamente');
+        console.log(error);
+      }
+    })
   }
 
 }
