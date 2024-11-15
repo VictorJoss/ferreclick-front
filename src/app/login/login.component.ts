@@ -30,8 +30,8 @@ export class LoginComponent {
     const email = this.form.get('email')?.value;
     const password = this.form.get('password')?.value;
 
-    this.authService.login(email, password).subscribe(
-      (isAuthenticated) => {
+    this.authService.login(email, password).subscribe({
+      next: (isAuthenticated) => {
         if (isAuthenticated) {
           if (UserStorageService.isAdminLoggedIn()) {
             this.router.navigateByUrl('admin/dashboard');
@@ -40,10 +40,10 @@ export class LoginComponent {
           }
         }
       },
-      (error) => {
+      error: (error) => {
         console.error('Login failed:', error);
       }
-    );
+    });
   }
 }
 
