@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, map } from 'rxjs';
+import { Observable, catchError, map, of } from 'rxjs';
 import { UserStorageService } from '../storage/user-storage.service';
 
 const BASIC_URL = "http://localhost:8080/";
@@ -30,6 +30,30 @@ export class AuthService {
           return false;
         })
       );
+  }
+
+  register(name: string, username: string, email: string, password: string, role: string): Observable<boolean> {
+    const headers = new HttpHeaders().set('Content-Type', 'application/json');
+    const body = { name, username, email, password, role };
+
+    return this.http.post(`${BASIC_URL}api/auth/register`, body, { headers })
+      .pipe(
+        map(() => {
+          return true;
+        }),
+        catchError((error) => {
+          if (error.status === 409) { // Usuario ya existe
+            console.error('Error: Usuario ya existe.');
+          } else {
+            console.error('Error en el registro:', error);
+          }
+          return of(false);
+        })
+      );
+  }
+
+  logout(): Observable<void> {
+    return this.http.post<void>(`${BASIC_URL}api/auth/logout`, {});
   }
 }
 
