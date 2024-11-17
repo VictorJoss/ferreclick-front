@@ -11,6 +11,7 @@ const BASIC_URL = "http://localhost:8080/"
 export class AdminService {
 
   constructor(private http: HttpClient) {}
+  //TODO: mover metodos a un servicio en específico para respetar el principio de responsabilidad única.
 
   addCategory(categoryDto: any): Observable<any>{
     return this.http.post(BASIC_URL + 'api/product-categories', categoryDto, {
@@ -27,6 +28,30 @@ export class AdminService {
   getCategories(): Observable<any[]> {
     return this.http.get<any[]>(BASIC_URL + 'api/product-categories', {
       headers: this.createAuthorizationHeader()
+    });
+  }  
+
+  getCategoryById(categoryId: number): Observable<any> {
+    return this.http.get<any>(`${BASIC_URL}api/product-categories/${categoryId}`, {
+      headers: this.createAuthorizationHeader()
+    });
+  }
+
+  getProducts(): Observable<any[]> {
+    return this.http.get<any[]>(BASIC_URL + 'api/products', {
+      headers: this.createAuthorizationHeader()
+    });
+  }
+
+  getProductById(productId: number): Observable<any> {
+    return this.http.get<any>(`${BASIC_URL}api/products/${productId}`, {
+      headers: this.createAuthorizationHeader()
+    });
+  }
+
+  getProductsByCategory(categoryId: number): Observable<any[]> {
+    return this.http.get<any[]>(`${BASIC_URL}api/products/category/${categoryId}`, {
+      headers: this.createAuthorizationHeader(),
     });
   }  
 
