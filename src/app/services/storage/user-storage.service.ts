@@ -55,4 +55,24 @@ export class UserStorageService {
       localStorage.removeItem(USER_ROLE);
     }
   }
+
+  public isTokenExpired(): boolean {
+    if (this.isLocalStorageAvailable()) {
+      const token = localStorage.getItem(TOKEN);
+      if (token) {
+        try {
+          const payloadBase64 = token.split('.')[1];
+          const decodedPayload = JSON.parse(atob(payloadBase64));
+          if (decodedPayload.exp) {
+            const currentTime = Math.floor(Date.now() / 1000); 
+            return decodedPayload.exp < currentTime; 
+          }
+        } catch (error) {
+          console.error('Error decoding token:', error);
+          return true; 
+        }
+      }
+    }
+    return true; 
+  }
 }
