@@ -1,9 +1,10 @@
 import { Component, OnInit, signal } from '@angular/core';
 import { Router } from '@angular/router';
-import { AdminService } from '../../service/admin.service';
 import { FormControl, FormGroup, Validators, FormArray, ReactiveFormsModule } from '@angular/forms';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { CommonModule } from '@angular/common';
+import { ProductService } from '../../../services/products/product.service';
+import { CategoryService } from '../../../services/category/category.service';
 
 @Component({
   selector: 'app-post-product',
@@ -26,7 +27,8 @@ export class PostProductComponent implements OnInit {
   );
 
   constructor(
-    private adminService: AdminService,
+    private productService: ProductService,
+    private categoryService:CategoryService,
     private router: Router
   ) {}
 
@@ -35,7 +37,7 @@ export class PostProductComponent implements OnInit {
   }
 
   loadCategories() {
-    this.adminService.getCategories().subscribe({
+    this.categoryService.getCategories().subscribe({
       next: (data) => {
         this.categories = data;
       },
@@ -80,7 +82,7 @@ export class PostProductComponent implements OnInit {
   
       delete formData.categories; 
   
-      this.adminService.addProduct(formData).subscribe({
+      this.productService.addProduct(formData).subscribe({
         next: (res) => {
           alert('Producto agregado correctamente');
           this.router.navigateByUrl('/admin/dashboard');

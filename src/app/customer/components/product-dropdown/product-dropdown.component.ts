@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AdminService } from '../../../admin/service/admin.service';
 import { CommonModule } from '@angular/common';
+import { ProductService } from '../../../services/products/product.service';
 
 interface Product {
   id: number;
@@ -26,7 +26,7 @@ export class ProductDropdownComponent implements OnInit {
   itemsToShow: number = 8;
   increment: number = 4;
 
-  constructor(private adminService: AdminService, private router: Router) {}
+  constructor(private productService:ProductService, private router: Router) {}
 
   ngOnInit() {
     if (this.categoryId) {
@@ -35,7 +35,7 @@ export class ProductDropdownComponent implements OnInit {
   }
 
   loadProductsByCategory() {
-    this.adminService.getProductsByCategory(this.categoryId).subscribe((products) => {
+    this.productService.getProductsByCategory(this.categoryId).subscribe((products) => {
       this.products = products;
     });
   }

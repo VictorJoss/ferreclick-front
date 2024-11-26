@@ -1,8 +1,8 @@
 import { Component, signal } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AdminService } from '../../service/admin.service';
 import { NavbarComponent } from '../navbar/navbar.component';
+import { CategoryService } from '../../../services/category/category.service';
 
 @Component({
   selector: 'app-post-category',
@@ -14,7 +14,7 @@ import { NavbarComponent } from '../navbar/navbar.component';
 export class PostCategoryComponent {
 
   constructor(private fb: FormBuilder,
-    private adminService: AdminService,
+    private categoryService:CategoryService,
     private router: Router){};
   
     categoryForm = signal<FormGroup>(
@@ -27,7 +27,7 @@ export class PostCategoryComponent {
   addCategory(){
     console.log('Agregando...');
     if(this.categoryForm().valid){
-      this.adminService.addCategory(this.categoryForm().value).subscribe((res)=>{
+      this.categoryService.addCategory(this.categoryForm().value).subscribe((res)=>{
         console.log(res);
         if(res.id != null){
           alert('Categoría creada correctamente');

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { AdminService } from '../../../admin/service/admin.service';
 import { NavbarComponent } from '../../../navbar/navbar.component';
 import { FooterComponent } from '../footer/footer.component';
+import { ProductService } from '../../../services/products/product.service';
 
 @Component({
   selector: 'app-product-details',
@@ -14,12 +14,12 @@ import { FooterComponent } from '../footer/footer.component';
 export class ProductDetailsComponent implements OnInit {
   product: any;
 
-  constructor(private route: ActivatedRoute, private adminService: AdminService) {}
+  constructor(private route: ActivatedRoute, private productService: ProductService) {}
 
   ngOnInit(): void {
     const productId = this.route.snapshot.paramMap.get('id');
     if (productId) {
-      this.adminService.getProductById(+productId).subscribe((product) => {
+      this.productService.getProductById(+productId).subscribe((product) => {
         this.product = product;
       });
     }
