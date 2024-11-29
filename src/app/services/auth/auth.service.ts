@@ -25,6 +25,7 @@ export class AuthService {
           if (jwt) {
             this.userStorageService.saveToken(jwt);
             this.userStorageService.saveUserRoleFromToken(jwt);
+            this.userStorageService.saveUserIdFromToken(jwt);
             return true;
           }
           return false;

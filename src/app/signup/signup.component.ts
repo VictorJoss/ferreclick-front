@@ -11,51 +11,57 @@ import { AuthService } from '../services/auth/auth.service';
   styleUrls: ['./signup.component.css']
 })
 export class SignupComponent {
+  generalError: string | null = null;
+  backendError: string | null = null;
+  passwordMismatch: boolean = false;
 
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
     private router: Router
-  ) {
-
-    this.form().get('name')?.valueChanges.subscribe(value => {
-      this.form().get('username')?.setValue(value, { emitEvent: false });
-    });
-  }
+  ) {}
 
   form = signal<FormGroup>(
     new FormGroup({
-      name: new FormControl(null, [Validators.required]),
-      username: new FormControl(null, [Validators.required]), 
+      name: new FormControl(null, [Validators.required, Validators.minLength(4)]),
       email: new FormControl(null, [Validators.required, Validators.email]),
-      password: new FormControl(null, [Validators.required]),
+      password: new FormControl(null, [Validators.required, Validators.minLength(6)]),
       confirmPassword: new FormControl(null, [Validators.required]),
       role: new FormControl("CUSTOMER", [Validators.required])
     })
-  )
+  );
 
   onSubmit(): void {
+    this.generalError = null;
+    this.backendError = null;
+
     const password = this.form().get('password')?.value;
     const confirmPassword = this.form().get('confirmPassword')?.value;
 
-    if (password !== confirmPassword) {
-      alert('Las contraseñas no coinciden');
+    // Verificar si el formulario es válido
+    if (this.form().invalid) {
+      this.generalError = 'Por favor, completa todos los campos requeridos.';
+      Object.values(this.form().controls).forEach(control => control.markAsTouched());
+      return;
+    }
+
+    // Verificar si las contraseñas coinciden
+    this.passwordMismatch = password !== confirmPassword;
+    if (this.passwordMismatch) {
+      this.generalError = 'Las contraseñas no coinciden.';
       return;
     }
 
     const { confirmPassword: _, ...formValue } = this.form().value;
 
-    const { name, username, email, role } = this.form().value;
-    this.authService.register(name, username, email, password, role).subscribe({
-      next: (response) => {
-        console.log('Registro exitoso');
+    this.authService.register(formValue.name, formValue.name, formValue.email, formValue.password, formValue.role).subscribe({
+      next: () => {
         this.router.navigateByUrl('/login');
       },
       error: (error) => {
-        console.log('Registro falló, intente nuevamente');
-        console.log(error);
+        this.backendError = error.error?.message || 'Error al registrar. Inténtalo de nuevo.';
+        console.log('desdesignup')
       }
-    })
+    });
   }
-
 }

@@ -1,0 +1,66 @@
+<section class="w-screen h-screen flex flex-col items-center overflow-x-hidden">
+
+    <!-- NavBar -->
+    <div class="w-full h-fit">
+        <app-navbar></app-navbar>
+        <hr class="w-full bg-black">
+    </div>
+
+
+    <div class="w-full h-fit">
+        <div class="w-full h-fit flex flex-col justify-center items-center p-4 md:p-6 md:flex-row md:justify-between lg:text-xl">
+            <h1 class="text-4xl font-bold px-2 pb-4 md:text-5xl md:p-0 lg:text-7xl text-primary">PRODUCTOS</h1>
+            <button (click)="irACrearProducto()" class="px-5 py-3 bg-primary rounded-full text-white font-bold hover:bg-green-700 lg:text-3xl">Crear Nuevo Producto</button>
+        </div>
+    </div>
+
+    <!-- Header con título, barra de búsqueda y filtro de categorías -->
+    <div class="w-full h-fit flex flex-col justify-center items-center p-4 md:p-6">
+
+        <!-- Barra de búsqueda -->
+        <input 
+            type="text" 
+            placeholder="Buscar productos..." 
+            class="w-full max-w-lg p-2 border border-gray-300 rounded-md my-4 text-lg"
+            (input)="filtrarProductos($event)"
+        >
+
+        <!-- Menú desplegable para categorías -->
+        <select 
+            class="w-full max-w-lg p-2 border border-gray-300 rounded-md text-lg"
+            (change)="filtrarPorCategoria($event)">
+            <option value="">Todas las categorías</option>
+            @for (category of categories; track $index) {
+                <option [value]="category.id">
+                    {{ category.name }}
+                </option>
+            }
+
+        </select>
+    </div>
+
+    <!-- Grilla de productos -->
+    <div class="w-full h-full px-4 py-6 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        @for (product of productosFiltrados; track $index) {
+            <div class="w-full bg-white shadow-lg rounded-lg p-4 flex flex-col items-center">
+            
+            <!-- Imagen del producto -->
+            <img [src]="product.image" alt="{{ product.name }}" 
+                 class="w-full h-40 object-cover rounded-t-lg">
+            
+            <!-- Detalles del producto -->
+            <div class="w-full text-center mt-4">
+                <h2 class="text-xl font-bold text-gray-800">{{ product.name }} #{{product.id}}</h2>
+                <p class="text-lg text-gray-600">{{ product.price.toLocaleString('es-CO', { style: 'currency', currency: 'COP' }) }}</p>
+                <div class="w-full h-fit flex justify-center items-center">
+                    <div class="w-1/2 h-fit flex justify-between items-center mt-3">
+                        <button (click)="irAEditarProducto(product.id)" class="text-lg text-white bg-primary hover:bg-green-700 px-3 py-1 rounded-full">Editar</button>
+                        <button class="text-lg text-white bg-red-600 hover:bg-red-500 px-2 py-1 rounded-full">Borrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        }
+    </div>
+
+</section>

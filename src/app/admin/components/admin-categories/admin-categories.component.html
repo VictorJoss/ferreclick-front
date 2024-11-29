@@ -1,0 +1,36 @@
+<section class="w-screen h-screen flex flex-col items-center overflow-x-hidden">
+
+    <!-- NavBar -->
+    <div class="w-full h-fit">
+        <app-navbar></app-navbar>
+        <hr class="w-full bg-black">
+    </div>
+
+    <div class="w-full h-fit">
+        <div class="w-full h-fit flex flex-col justify-center items-center p-4 md:p-6 md:flex-row md:justify-between lg:text-xl">
+            <h1 class="text-4xl font-bold px-2 pb-4 md:text-5xl md:p-0 lg:text-7xl text-primary">CATEGORIAS</h1>
+            <button (click)="irACrearCategoria()" class="px-5 py-3 bg-primary rounded-full text-white font-bold hover:bg-green-700 lg:text-3xl">Crear Nueva Categoria</button>
+        </div>
+    </div>
+
+    <!-- Grilla de Categorias -->
+    <div class="w-full h-full px-4 py-6 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        @for (category of categories; track $index) {
+            <div class="w-full bg-white shadow-lg rounded-lg p-4 flex flex-col items-center">
+            
+            <!-- Detalles del producto -->
+            <div class="w-full h-full text-center mt-4 flex flex-col justify-center items-center">
+                <h2 class="text-xl font-bold lg:text-3xl text-primary">{{ category.name }} #{{category.id}}</h2>
+                <p class="text-lg text-black">{{ category.description }}</p>
+                <div class="w-full h-fit flex justify-center items-center">
+                    <div class="w-1/2 h-fit flex justify-between items-center mt-3">
+                        <button class="text-lg text-white bg-primary hover:bg-green-700 px-3 py-1 rounded-full">Editar</button>
+                        <button class="text-lg text-white bg-red-600 hover:bg-red-500 px-2 py-1 rounded-full">Borrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        }
+    </div>
+
+</section>

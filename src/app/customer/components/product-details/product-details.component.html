@@ -1,51 +1,62 @@
-<section class="w-full h-screen flex flex-col justify-between items-center">
-  <div class="w-full">
-    <app-navbar></app-navbar>
-  </div>
-  <div class="w-full h-fit bg-white flex flex-col justify-center items-center p-4 md:flex-row md:p-8 md:overflow-x-auto md:h-full xl:max-w-[1800px]">
-    <img [src]="product?.image" alt="{{product?.name}}" class="w-full h-auto object-cover rounded-lg md:w-1/2 lg:w-[2500px] lg:h-[500px]">
-    <div class="w-full h-full flex flex-col justify-center items-center p-4 lg:items-start">
-      <h1 class="text-justify text-3xl text-black font-semibold md:text-5xl lg:text-7xl lg:font-bold">{{product?.name}}</h1>
-      <p class="text-justify max-h-72 text-base text-black font-normal mt-2 md:max-h-52 lg:max-h-64 md:text-lg md:mt-6 lg:text-2xl overflow-x-auto">{{product?.description}}</p>
-      <div class="w-full h-fit flex mt-4 md:mt-6">
-        <h2 class="text-3xl text-primary font-bold md:text-4xl lg:text-5xl">{{product?.price.toLocaleString('es-CO', { style: 'currency', currency: 'COP' })}}</h2>
-      </div>
-
-      <!-- Boton de Cantidad -->
-      <div class="w-full flex items-center gap-4 mt-6">
-        <button
-          class="px-4 py-2 bg-primary hover:bg-green-700 rounded-full text-white font-bold select-none"
-          (click)="decrementarCantidad()"
-        >
-          -
-        </button>
-    
-        <input
-          type="number"
-          class="w-16 text-center border border-gray-300 rounded"
-          [value]="cantidad"
-          (input)="cambiarCantidad($event)"
-        />
-    
-        <button
-          class="px-4 py-2 bg-primary hover:bg-green-700 rounded-full text-white font-bold select-none"
-          (click)="incrementarCantidad()"
-        >
-          +
-        </button>
-      </div>
-
-      <!-- Agregar Al Carrito -->
-      <div class="w-full h-fit flex mt-6 justify-center xl:justify-start">
-        <button class="text-lg text-secondary font-bold lg:text-3xl bg-primary p-4 rounded-full hover:bg-green-700">Agregar Al Carrito</button>
-      </div>
-
-
-
-
+<section class="w-full h-screen flex justify-center">
+  <div class="w-full h-full flex flex-col justify-between items-center lg:max-w-max">
+    <div class="w-full">
+      <app-navbar></app-navbar>
     </div>
-  </div>
-  <div class="w-full">
-    <app-footer></app-footer>
+    <div class="w-full h-fit bg-white flex flex-col justify-center items-center p-4 md:flex-row md:p-8 md:overflow-x-auto md:h-full xl:max-w-[1800px]">
+      <img [src]="product?.image" alt="{{product?.name}}" class="w-full h-auto object-cover rounded-lg md:w-1/2 lg:w-[2500px] lg:h-[500px]">
+      <div class="w-full h-full flex flex-col justify-center items-center p-4 lg:items-start">
+        <h1 class="text-justify text-3xl text-black font-semibold md:text-5xl lg:text-7xl lg:font-bold">{{product?.name}}</h1>
+        <p class="text-justify max-h-72 text-base text-black font-normal mt-2 md:max-h-52 lg:max-h-64 md:text-lg md:mt-6 lg:text-2xl overflow-x-auto">{{product?.description}}</p>
+        <div class="w-full h-fit flex mt-4 md:mt-6">
+          <h2 class="text-3xl text-primary font-bold md:text-4xl lg:text-5xl">{{product?.price.toLocaleString('es-CO', { style: 'currency', currency: 'COP' })}}</h2>
+        </div>
+  
+        <!-- Boton de Cantidad -->
+        <div class="w-full flex items-center gap-4 mt-6">
+          <button
+            class="px-4 py-2 bg-primary hover:bg-green-700 rounded-full text-white font-bold select-none"
+            (click)="decrementarCantidad()"
+          >
+            -
+          </button>
+      
+          <input
+            type="number"
+            class="w-16 text-center border border-gray-300 rounded"
+            [value]="cantidad"
+            (input)="cambiarCantidad($event)"
+            readonly
+          />
+      
+          <button
+            class="px-4 py-2 bg-primary hover:bg-green-700 rounded-full text-white font-bold select-none"
+            (click)="incrementarCantidad()"
+          >
+            +
+          </button>
+        </div>
+  
+        <!-- Agregar Al Carrito -->
+         @if (isGeneral()) {
+          <div class="w-full h-fit flex mt-6 justify-center xl:justify-start">
+            <button (click)="this.agregarAlCarrito()" class="text-lg text-secondary font-bold lg:text-3xl bg-primary p-4 rounded-full hover:bg-green-700">Agregar Al Carrito</button>
+          </div>
+         } @else {
+          <div class="w-full h-fit flex mt-6 justify-center xl:justify-start">
+            <button (click)="triggerPopup()" class="text-lg text-secondary font-bold lg:text-3xl bg-primary p-4 rounded-full hover:bg-green-700">Agregar Al Carrito</button>
+            <app-popup></app-popup>
+          </div>
+         }
+
+  
+  
+  
+  
+      </div>
+    </div>
+    <div class="w-full">
+      <app-footer></app-footer>
+    </div>
   </div>
 </section>
