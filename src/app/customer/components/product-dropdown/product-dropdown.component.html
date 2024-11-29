@@ -7,17 +7,17 @@
     <img [src]="img" alt="{{ titulo }}" class="w-full object-cover h-auto mb-4">
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
       <div 
-        class="border rounded-lg overflow-hidden shadow-lg cursor-pointer"
+        class="border rounded-lg overflow-hidden shadow-lg cursor-pointer bg-white"
         *ngFor="let product of displayedProducts()"
         (click)="viewDetails(product.id)"
         (keydown)="handleKeyDown($event, product.id)"
       >
         <img [src]="product.image" alt="{{ product.name }}" class="w-full h-48 object-cover" />
         <div class="p-4">
-          <h3 class="text-lg font-bold text-white">{{ product.name }}</h3>
-          <p class="text-white">${{ product.price }}</p>
-          <button class="mt-2 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
-            Añadir al carrito
+          <h3 class="text-lg font-bold text-black">{{ product.name }}</h3>
+          <p class="text-black">{{ product.price.toLocaleString('es-CO', { style: 'currency', currency: 'COP' }) }}</p>
+          <button (click)="viewDetails(product.id)" class="mt-2 px-4 py-2 bg-primary text-white rounded hover:bg-green-700">
+            Ver Productos
         </button>
         </div>
       </div>
@@ -26,7 +26,7 @@
     <div class="mt-8 text-center" *ngIf="showLoadMoreButton()">
       <button
         (click)="loadMore()"
-        class="px-4 py-2 mb-4 bg-blue-600 text-white rounded hover:bg-blue-700">
+        class="px-4 py-2 mb-4 bg-primary text-white rounded hover:bg-green-700">
         Mostrar más
       </button>
     </div>

@@ -13,13 +13,13 @@ import { UserStorageService } from '../services/storage/user-storage.service';
 })
 export class LoginComponent {
   form: FormGroup;
+  generalError: string | null = null; // Para mostrar un error general encima del botón
 
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
     private router: Router
   ) {
-    
     this.form = this.fb.group({
       email: [null, [Validators.required, Validators.email]],
       password: [null, [Validators.required]]
@@ -27,6 +27,11 @@ export class LoginComponent {
   }
 
   onSubmit(): void {
+    if (this.form.invalid) {
+      this.markFieldsAsTouched(); // Marca los campos inválidos como tocados
+      return;
+    }
+
     const email = this.form.get('email')?.value;
     const password = this.form.get('password')?.value;
 
@@ -38,12 +43,21 @@ export class LoginComponent {
           } else if (UserStorageService.isCustomerLoggedIn()) {
             this.router.navigateByUrl('customer/dashboard');
           }
+        } else {
+          this.generalError = 'La cuenta no existe o las credenciales son incorrectas.';
         }
       },
-      error: (error) => {
-        console.error('Login failed:', error);
+      error: () => {
+        this.generalError = 'Ocurrió un error al intentar iniciar sesión.';
       }
     });
   }
-}
 
+  private markFieldsAsTouched(): void {
+    // Marca todos los campos como tocados para mostrar los errores
+    Object.keys(this.form.controls).forEach((field) => {
+      const control = this.form.get(field);
+      control?.markAsTouched({ onlySelf: true });
+    });
+  }
+}

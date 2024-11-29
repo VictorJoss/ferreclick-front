@@ -6,9 +6,46 @@
         </div>
     </a>
     <!-- Ícono de carrito de compras -->
-     @if (!isAdminLoggedIn) {
-        <div class="icon-circle">
-            <svg class="h-10 w-10 fill-primary hover:fill-white" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M2 1a1 1 0 0 0 0 2h1.22l3.563 14.257A3 3 0 1 0 10.83 19h4.342A3 3 0 1 0 18 17H8.78l-.5-2H18c2.064 0 3.302-1.304 3.989-2.744.67-1.407.904-3.09.986-4.312C23.088 6.24 21.68 5 20.121 5H5.781L5.16 2.515A2 2 0 0 0 3.22 1H2Zm16 12H7.78l-1.5-6h13.841c.553 0 .885.407.858.81-.076 1.142-.288 2.522-.795 3.585C19.692 12.425 19.02 13 18 13Zm0 7.994a.994.994 0 1 1 0-1.988.994.994 0 0 1 0 1.988ZM7.006 20a.994.994 0 1 0 1.988 0 .994.994 0 0 0-1.988 0Z"/></svg>
+     @if (isCustomerLoggedIn) {
+        <div class="icon-circle group">
+
+            <div class="relative">
+                <button (click)="irACarritoDetails()" class="text-white flex items-center">
+                  <!-- SVG del carrito -->
+                  <svg class="h-10 w-10 fill-primary group-hover:fill-white" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M2 1a1 1 0 0 0 0 2h1.22l3.563 14.257A3 3 0 1 0 10.83 19h4.342A3 3 0 1 0 18 17H8.78l-.5-2H18c2.064 0 3.302-1.304 3.989-2.744.67-1.407.904-3.09.986-4.312C23.088 6.24 21.68 5 20.121 5H5.781L5.16 2.515A2 2 0 0 0 3.22 1H2Zm16 12H7.78l-1.5-6h13.841c.553 0 .885.407.858.81-.076 1.142-.288 2.522-.795 3.585C19.692 12.425 19.02 13 18 13Zm0 7.994a.994.994 0 1 1 0-1.988.994.994 0 0 1 0 1.988ZM7.006 20a.994.994 0 1 0 1.988 0 .994.994 0 0 0-1.988 0Z"/></svg>
+                </button>
+          
+                <!-- Menú desplegable -->
+                <div class="absolute right-0 mt-2 w-64 bg-white shadow-lg rounded-lg z-50 hidden lg:group-hover:block max-h-72 overflow-x-auto">
+                  <div class="p-4">
+                    <h3 class="font-bold text-lg">Carrito</h3>
+                    
+                    
+                    @if (this.carrito.length) {
+                        <div>
+                            <ul>
+                              @for (item of this.carrito; track $index) {
+                                  <li class="flex flex-col justify-between py-2 border-b">
+                                    <img src="{{item.product.image}}" alt="">
+                                    <div class="flex flex-col justify-center items-center">
+                                        <span class="text-xl font-bold">{{ item.product.name }}</span>
+                                        <span>{{ item.quantity }} x {{ item.product.price.toLocaleString('es-CO', { style: 'currency', currency: 'COP' }) }}</span>
+                                    </div>
+                                  </li>
+                              }
+                            </ul>
+                            <p class="text-right mt-4 font-bold">
+                              Total: {{ calcularTotal().toLocaleString('es-CO', { style: 'currency', currency: 'COP' }) }}
+                            </p>
+                          </div>
+                    } @else {
+                        <ng-template #carritoVacio>
+                            <p class="text-gray-500">Tu carrito está vacío</p>
+                        </ng-template>
+                    }
+                  </div>
+                </div>
+              </div>
         </div>
      }
 

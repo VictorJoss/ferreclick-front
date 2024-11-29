@@ -1,93 +1,101 @@
-<app-navbar></app-navbar>
-<div class="w-screen h-screen flex flex-col items-center pt-12">
-  <div class="w-full max-w-4xl p-4 bg-white rounded-lg shadow-lg lg:max-w-6xl">
-    <h2 class="text-xl font-semibold mb-4 text-center">Agregar Producto</h2>
-    <form [formGroup]="productForm()" (ngSubmit)="addProduct()" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div class="w-screen h-screen flex flex-col items-center">
 
-      <div>
-        <label class="block text-gray-700 text-sm font-bold mb-1" for="name">Nombre</label>
-        <input
-          type="text"
-          id="name"
-          formControlName="name"
-          class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-          placeholder="Nombre del producto"
-        />
-        <div *ngIf="productForm().get('name').invalid && productForm().get('name').touched" class="text-red-500 text-sm mt-1">
-          Por favor, ingresa un nombre.
-        </div>
-      </div>
+  <div class="w-full h-fit">
+    <app-navbar></app-navbar>
+    <hr class="w-full bg-black">
+  </div>
 
-      <div>
-        <label class="block text-gray-700 text-sm font-bold mb-1" for="description">Descripción</label>
-        <input
-          type="text"
-          id="description"
-          formControlName="description"
-          class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-          placeholder="Descripción del producto"
-        />
-        <div *ngIf="productForm().get('description').invalid && productForm().get('description').touched" class="text-red-500 text-sm mt-1">
-          La descripción es obligatoria.
-        </div>
-      </div>
-
-      <div>
-        <label class="block text-gray-700 text-sm font-bold mb-1" for="image">Imagen</label>
-        <input
-          type="file"
-          id="image"
-          formControlName="image"
-          class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-        />
-        <div *ngIf="productForm().get('image').invalid && productForm().get('image').touched" class="text-red-500 text-sm mt-1">
-          Las imágenes son obligatorias.
-        </div>
-      </div>
-
-      <div>
-        <label class="block text-gray-700 text-sm font-bold mb-1" for="price">Precio</label>
-        <input
-          type="number"
-          id="price"
-          min="0"
-          formControlName="price"
-          class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-          placeholder="Precio del producto"
-        />
-        <div *ngIf="productForm().get('price').invalid && productForm().get('price').touched" class="text-red-500 text-sm mt-1">
-          El precio es obligatorio.
-        </div>
-      </div>
-
-      <div class="col-span-1 md:col-span-2">
-        <label for="categories" class="block text-gray-700 text-sm font-bold mb-1">Categorías</label>
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-2">
-          <div *ngFor="let category of categories">
-            <input
-              type="checkbox"
-              [id]="'category-' + category.id"
-              [checked]="isCategorySelected(category.id)"
-              (change)="onCategoryChange($event, category.id)"
-              class="mr-2"
-            />
-            <label [for]="'category-' + category.id">{{ category.name }}</label>
+  <div class="w-full h-full flex items-center justify-center">
+    <div class="w-full max-w-4xl p-4 bg-white rounded-lg shadow-lg lg:max-w-6xl mt-2">
+      <h2 class="text-2xl mb-4 text-center uppercase font-bold text-primary lg:text-4xl">Agregar Producto</h2>
+      <form [formGroup]="productForm()" (ngSubmit)="addProduct()" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+  
+        <div>
+          <label class="block text-gray-700 text-sm font-bold mb-1" for="name">Nombre</label>
+          <input
+            type="text"
+            id="name"
+            formControlName="name"
+            class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+            placeholder="Nombre del producto"
+          />
+          <div *ngIf="productForm().get('name').invalid && productForm().get('name').touched" class="text-red-500 text-sm mt-1">
+            Por favor, ingresa un nombre.
           </div>
         </div>
-        <div *ngIf="isCategoryFormInvalid()" class="text-red-500 text-sm mt-1">
-          Seleccione al menos una categoría.
+  
+        <div>
+          <label class="block text-gray-700 text-sm font-bold mb-1" for="description">Descripción</label>
+          <input
+            type="text"
+            id="description"
+            formControlName="description"
+            class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+            placeholder="Descripción del producto"
+          />
+          <div *ngIf="productForm().get('description').invalid && productForm().get('description').touched" class="text-red-500 text-sm mt-1">
+            La descripción es obligatoria.
+          </div>
         </div>
-      </div>
-
-      <div class="col-span-1 md:col-span-2">
-        <button
-          type="submit"
-          [disabled]="productForm().invalid"
-          class="w-full bg-blue-500 text-white font-bold py-2 px-4 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75"
-        >
-          Agregar Producto
-        </button>
-      </div>
-    </form>
+  
+        <div>
+          <label class="block text-gray-700 text-sm font-bold mb-1" for="image">Imagen</label>
+          <input
+            type="file"
+            id="image"
+            formControlName="image"
+            class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+          />
+          <div *ngIf="productForm().get('image').invalid && productForm().get('image').touched" class="text-red-500 text-sm mt-1">
+            Las imágenes son obligatorias.
+          </div>
+        </div>
+  
+        <div>
+          <label class="block text-gray-700 text-sm font-bold mb-1" for="price">Precio</label>
+          <input
+            type="number"
+            id="price"
+            min="0"
+            formControlName="price"
+            class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            placeholder="Precio del producto"
+          />
+          <div *ngIf="productForm().get('price').invalid && productForm().get('price').touched" class="text-red-500 text-sm mt-1">
+            El precio es obligatorio.
+          </div>
+        </div>
+  
+        <div class="col-span-1 md:col-span-2">
+          <label for="categories" class="block text-gray-700 text-sm font-bold mb-1">Categorías</label>
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-2">
+            <div *ngFor="let category of categories">
+              <input
+                type="checkbox"
+                [id]="'category-' + category.id"
+                [checked]="isCategorySelected(category.id)"
+                (change)="onCategoryChange($event, category.id)"
+                class="mr-2"
+              />
+              <label [for]="'category-' + category.id">{{ category.name }}</label>
+            </div>
+          </div>
+          <div *ngIf="isCategoryFormInvalid()" class="text-red-500 text-sm mt-1">
+            Seleccione al menos una categoría.
+          </div>
+        </div>
+  
+        <div class="col-span-1 md:col-span-2">
+          <button
+            type="submit"
+            [disabled]="productForm().invalid"
+            class="w-full bg-primary text-white font-bold py-2 px-4 rounded-lg hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75"
+          >
+            Agregar Producto
+          </button>
+        </div>
+      </form>
+    </div>
   </div>
+  
 </div>
