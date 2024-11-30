@@ -93,7 +93,7 @@ export class PostProductComponent implements OnInit {
       this.productService.addProduct(formData).subscribe({
         next: (res) => {
           alert('Producto agregado correctamente');
-          this.router.navigateByUrl('/admin/dashboard');
+          this.router.navigateByUrl('/admin/products');
         },
         error: (err) => {
           alert('Error al agregar el producto');
@@ -104,6 +104,4 @@ export class PostProductComponent implements OnInit {
       this.productForm().markAllAsTouched();
     }
   }
-
-  
 }
