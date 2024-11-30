@@ -86,4 +86,15 @@ export class AdminProductComponent implements OnInit{
     this.router.navigate(['/admin/products/edit', id]);
   }
 
+   deleteProduct(id: number): void {
+    this.productService.deleteProductById(id).subscribe({
+      next: (response) => {
+        alert("Producto eliminado exitosamente");
+        this.obtenerProductos();
+      },
+      error: (error) => {
+        console.error('Error al eliminar producto', error);
+      }
+    });
+  }
 }

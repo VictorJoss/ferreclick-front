@@ -37,4 +37,9 @@ export class ProductService {
     });
   }
 
+  deleteProductById(productId: number): Observable<any> {
+    return this.http.delete<any>(`${BASIC_URL}api/products/${productId}`, {
+      headers: this.apiService.createAuthorizationHeader()
+    });
+  }
 }
