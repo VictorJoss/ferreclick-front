@@ -46,18 +46,31 @@
     
           <div>
             <label class="block text-gray-700 text-sm font-bold mb-1" for="image">Imagen</label>
+          
+            <!-- Vista previa de la imagen cargada -->
+            <div *ngIf="!isEditingImage" class="relative">
+              <img [src]="currentImage" alt="Vista previa" class="w-full h-auto max-h-60 object-cover rounded-md">
+              <button
+                type="button"
+                (click)="editImage()"
+                class="absolute top-2 right-2 bg-red-500 text-white text-sm px-2 py-1 rounded"
+              >
+                Cambiar Imagen
+              </button>
+            </div>
+          
+            <!-- Input file si se está editando la imagen -->
             <input
+              *ngIf="isEditingImage"
               type="file"
               id="image"
-              formControlName="image"
+              (change)="onFileSelected($event)"
               class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
             />
-            @if (productForm().get('image').invalid && productForm().get('image').touched) {
-                <div class="text-red-500 text-sm mt-1">
-                    Las imágenes son obligatorias.
-                </div>
-            }
-
+          
+            <div *ngIf="isEditingImage && selectedFileError" class="text-red-500 text-sm mt-1">
+              Por favor, selecciona una imagen válida.
+            </div>
           </div>
     
           <div>

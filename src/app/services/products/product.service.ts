@@ -36,7 +36,12 @@ export class ProductService {
       headers: this.apiService.createAuthorizationHeader(),
     });
   }
-
+  
+  updateProduct(productDto: FormData): Observable<any>{
+    return this.http.put(BASIC_URL + 'api/products', productDto, {
+      headers: this.apiService.createAuthorizationHeader()
+    });
+  }
   deleteProductById(productId: number): Observable<any> {
     return this.http.delete<any>(`${BASIC_URL}api/products/${productId}`, {
       headers: this.apiService.createAuthorizationHeader()
