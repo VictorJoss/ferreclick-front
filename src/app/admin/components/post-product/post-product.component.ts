@@ -20,7 +20,7 @@ export class PostProductComponent implements OnInit {
     new FormGroup({
       name: new FormControl(null, [Validators.required]),
       description: new FormControl(null, [Validators.required]),
-      image: new FormControl("myhostedimage.com", [Validators.required]),
+      image: new FormControl(null, [Validators.required]),
       price: new FormControl(null, [Validators.required, Validators.min(0)]),
       categories: new FormArray([], Validators.required) // Array de IDs seleccionados.
     })
@@ -75,12 +75,20 @@ export class PostProductComponent implements OnInit {
 
   addProduct() {
     if (this.productForm().valid) {
-      const formData = {
-        ...this.productForm().value,
-        categoryIds: this.productForm().get('categories')?.value
-      };
+      const formData = new FormData();
+      const formValue = this.productForm().value;
   
-      delete formData.categories; 
+      formData.append('name', formValue.name);
+      formData.append('description', formValue.description);
+      formData.append('price', formValue.price.toString()); 
+  
+      const categoriesArray = this.productForm().get('categories')?.value;
+      formData.append('categoryIds', JSON.stringify(categoriesArray));
+  
+      const fileInput: HTMLInputElement | null = document.querySelector('#image');
+      if (fileInput?.files?.length) {
+        formData.append('image', fileInput.files[0]);
+      }
   
       this.productService.addProduct(formData).subscribe({
         next: (res) => {
@@ -96,5 +104,6 @@ export class PostProductComponent implements OnInit {
       this.productForm().markAllAsTouched();
     }
   }
+
   
 }

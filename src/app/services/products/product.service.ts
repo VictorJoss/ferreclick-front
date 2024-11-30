@@ -13,7 +13,7 @@ export class ProductService {
 
   constructor(private apiService:ApiService, private http: HttpClient) { }
 
-  addProduct(productDto: any): Observable<any>{
+  addProduct(productDto: FormData): Observable<any>{
     return this.http.post(BASIC_URL + 'api/products', productDto, {
       headers: this.apiService.createAuthorizationHeader()
     });
