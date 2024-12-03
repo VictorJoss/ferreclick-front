@@ -1,7 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { CommonModule } from '@angular/common';
+import { Component, Input } from '@angular/core';
 import { ProductService } from '../../../services/products/product.service';
+import { Router } from '@angular/router';
 
 interface Product {
   id: number;
@@ -11,13 +10,13 @@ interface Product {
 }
 
 @Component({
-  selector: 'app-product-dropdown',
+  selector: 'app-general-product-dropdown',
   standalone: true,
-  templateUrl: './product-dropdown.component.html',
-  imports: [CommonModule],
-  styleUrls: ['./product-dropdown.component.css'],
+  imports: [],
+  templateUrl: './general-product-dropdown.component.html',
+  styleUrl: './general-product-dropdown.component.css'
 })
-export class ProductDropdownComponent implements OnInit {
+export class GeneralProductDropdownComponent {
   @Input() titulo: string = '';
   @Input() img: string = '';
   @Input() categoryId: number = 0;
@@ -41,7 +40,7 @@ export class ProductDropdownComponent implements OnInit {
   }
 
   viewDetails(productId: number) {
-    this.router.navigate(['/customer/dashboard/product-details', productId]);
+    this.router.navigate(['/general/dashboard/product-details', productId]);
   }
 
   displayedProducts() {
@@ -53,7 +52,7 @@ export class ProductDropdownComponent implements OnInit {
   }
 
   loadMore() {
-    this.router.navigate(['/customer/allproducts']);
+    this.router.navigate(['/general/allproducts'])
   }
 
   handleKeyDown(event: KeyboardEvent, productId: number): void {

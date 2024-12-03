@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { NavbarComponent } from "../navbar/navbar.component";
+import { NavbarComponent } from "../admin-navbar/navbar.component";
 import { ProductService } from '../../../services/products/product.service';
 import { CategoryService } from '../../../services/category/category.service';
 import { Router } from '@angular/router';
@@ -72,10 +72,6 @@ export class AdminProductComponent implements OnInit{
                                 );
       return coincideTexto && coincideCategoria;
     });
-  }
-
-  mostrarValue(valor):void{
-    console.log(valor);
   }
 
   irACrearProducto():any{

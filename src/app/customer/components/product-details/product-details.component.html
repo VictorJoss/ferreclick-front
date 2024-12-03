@@ -38,21 +38,10 @@
         </div>
   
         <!-- Agregar Al Carrito -->
-         @if (isGeneral()) {
           <div class="w-full h-fit flex mt-6 justify-center xl:justify-start">
             <button (click)="this.agregarAlCarrito()" class="text-lg text-secondary font-bold lg:text-3xl bg-primary p-4 rounded-full hover:bg-green-700">Agregar Al Carrito</button>
           </div>
-         } @else {
-          <div class="w-full h-fit flex mt-6 justify-center xl:justify-start">
-            <button (click)="triggerPopup()" class="text-lg text-secondary font-bold lg:text-3xl bg-primary p-4 rounded-full hover:bg-green-700">Agregar Al Carrito</button>
-            <app-popup></app-popup>
-          </div>
-         }
-
-  
-  
-  
-  
+          
       </div>
     </div>
     <div class="w-full">

@@ -38,4 +38,10 @@ export class CarritoService {
     });
   }
 
+  removeAllCartByUserId(userId:any): Observable<any[]>{
+    return this.http.delete<any[]>(BASIC_URL + `api/cart/remove-product/all/${userId}`, {
+      headers: this.apiService.createAuthorizationHeader()
+    });
+  }
+
 }

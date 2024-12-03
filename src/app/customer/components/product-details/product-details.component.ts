@@ -1,11 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { NavbarComponent } from '../../../navbar/navbar.component';
+import { NavbarComponent } from '../customer-navbar/navbar.component';
 import { FooterComponent } from '../footer/footer.component';
 import { ProductService } from '../../../services/products/product.service';
 import { UserStorageService } from '../../../services/storage/user-storage.service';
 import { CarritoService } from '../../../services/carrito/carrito.service';
-import { PopupComponent } from '../../../popup/popup.component';
+import { PopupComponent } from '../../../UtilitiesComponents/popup/popup.component';
 
 @Component({
   selector: 'app-product-details',
@@ -101,11 +101,6 @@ export class ProductDetailsComponent implements OnInit {
     } else {
       this.cantidad = 1;  // Si no se encuentra el producto, se establece a 1
     }
-  }
-  
-
-  isGeneral():boolean{
-    return (!UserStorageService.isAdminLoggedIn && !UserStorageService.isCustomerLoggedIn);
   }
 
   triggerPopup(): void {

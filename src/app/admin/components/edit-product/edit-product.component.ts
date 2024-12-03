@@ -3,7 +3,7 @@ import { FormArray, FormControl, FormGroup, ReactiveFormsModule, Validators } fr
 import { ProductService } from '../../../services/products/product.service';
 import { CategoryService } from '../../../services/category/category.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { NavbarComponent } from "../navbar/navbar.component";
+import { NavbarComponent } from "../admin-navbar/navbar.component";
 import { CommonModule } from '@angular/common';
 
 @Component({

@@ -1,7 +1,7 @@
 import { Component, signal } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { NavbarComponent } from '../navbar/navbar.component';
+import { NavbarComponent } from '../admin-navbar/navbar.component';
 import { CategoryService } from '../../../services/category/category.service';
 
 @Component({

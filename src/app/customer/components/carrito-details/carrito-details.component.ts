@@ -1,14 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { NavbarButtonsComponent } from '../../../navbar-buttons/navbar-buttons.component';
 import { FooterComponent } from '../footer/footer.component';
-import { NavbarComponent } from "../../../navbar/navbar.component";
+import { NavbarComponent } from "../customer-navbar/navbar.component";
 import { UserStorageService } from '../../../services/storage/user-storage.service';
 import { CarritoService } from '../../../services/carrito/carrito.service';
 
 @Component({
   selector: 'app-carrito-details',
   standalone: true,
-  imports: [NavbarButtonsComponent, FooterComponent, NavbarComponent],
+  imports: [FooterComponent, NavbarComponent],
   templateUrl: './carrito-details.component.html',
   styleUrl: './carrito-details.component.css'
 })
@@ -115,6 +114,21 @@ export class CarritoDetailsComponent  implements OnInit{
           console.error('Error al borrar el producto del carrito:', err);
         }
       });
+    }
+  }
+
+  borrarTodoElCarrito():void{
+    const userId = UserStorageService.getUserId();
+    if(userId){
+      this.carritoService.removeAllCartByUserId(userId).subscribe({
+        next: (response) =>{
+          this.cargarCarrito();
+        },
+        error: (error) =>{
+          console.error(error);
+        }
+      })
+
     }
   }
 }

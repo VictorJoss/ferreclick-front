@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { NavbarComponent } from '../../../navbar/navbar.component';
-import { InfoTagHomeComponent } from '../info-tag-home/info-tag-home.component';
-import { HeroComponent } from '../hero/hero.component';
-import { HomeAdvantagesComponent } from '../home-advantages/home-advantages.component';
+import { NavbarComponent } from '../customer-navbar/navbar.component';
+import { InfoTagHomeComponent } from '../../../UtilitiesComponents/info-tag-home/info-tag-home.component';
+import { HeroComponent } from '../../../UtilitiesComponents/hero/hero.component';
+import { HomeAdvantagesComponent } from '../../../UtilitiesComponents/home-advantages/home-advantages.component';
 import { ProductsectionComponent } from '../productsection/productsection.component';
 import { FooterComponent } from '../footer/footer.component';
 

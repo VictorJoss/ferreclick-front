@@ -1,10 +1,8 @@
-import { Component, Input, input } from '@angular/core';
-import { ActivatedRoute, Router, RouterLink, RouterLinkActive } from '@angular/router';
-import { UserStorageService } from '../services/storage/user-storage.service';
-import { AuthService} from '../services/auth/auth.service';
-import { CarritoService } from '../services/carrito/carrito.service';
-import { LoginComponent } from '../login/login.component';
-import { CustomerComponent } from '../customer/customer.component';
+import { Component, Input } from '@angular/core';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
+import { UserStorageService } from '../../../services/storage/user-storage.service';
+import { AuthService} from '../../../services/auth/auth.service';
+import { CarritoService } from '../../../services/carrito/carrito.service';
 
 @Component({
   selector: 'app-navbar-buttons',
@@ -14,10 +12,6 @@ import { CustomerComponent } from '../customer/customer.component';
   styleUrl: './navbar-buttons.component.css'
 })
 export class NavbarButtonsComponent {
-  
-
-  isCustomerLoggedIn: boolean = UserStorageService.isCustomerLoggedIn();
-  isAdminLoggedIn: boolean = UserStorageService.isAdminLoggedIn();
   carrito:any = [];
 
   // "cartItems": [
@@ -37,16 +31,10 @@ export class NavbarButtonsComponent {
   constructor(
     private router: Router,
     private authService: AuthService,
-    private route: ActivatedRoute,
     private carritoService:CarritoService
   ){}
 
   ngOnInit(): void{
-
-    this.router.events.subscribe(event =>{
-      this.isCustomerLoggedIn = UserStorageService.isCustomerLoggedIn();
-      this.isAdminLoggedIn = UserStorageService.isAdminLoggedIn();
-    })
 
     this.cargarCarrito();
     
@@ -76,6 +64,7 @@ export class NavbarButtonsComponent {
           // Guardar los datos del carrito en la variable
           this.carrito = carritoData;
           this.carrito = this.carrito.cartItems;
+          console.log(this.carrito);
         },
         error: (err) => {
           console.error('Error al obtener el carrito:', err);

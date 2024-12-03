@@ -1,0 +1,80 @@
+<section class="w-screen h-full flex flex-col items-center overflow-x-hidden">
+    @if (isGeneral()) {
+        <div class="w-full h-fit">
+            <app-general-navbar></app-general-navbar>
+        </div>
+    }
+    
+    @if (!isGeneral()) {
+        <div class="w-full h-fit">
+            <app-navbar></app-navbar>
+        </div>
+    }
+
+    <!-- Barra de búsqueda -->
+    <div class="w-full max-w-4xl p-4">
+        <input
+        type="text"
+        placeholder="Buscar productos..."
+        class="w-full px-3 py-2 border rounded-lg"
+        (input)="onSearch($event)"
+        />
+    </div>
+
+    <!-- Filtro por categorías -->
+    <div class="w-full max-w-4xl p-4">
+        <h3 class="text-2xl font-bold py-2 uppercase text-primary md:text-3xl">Categorías</h3>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-2">
+        @for (category of categories; track $index) {
+            <div>
+            <input
+                type="checkbox"
+                [id]="'category-' + category.id"
+                (change)="onCategoryToggle(category.id, $event)"
+            />
+            <label class="pl-2 md:text-lg" [for]="'category-' + category.id">{{ category.name }}</label>
+            </div>
+        }
+        </div>
+    </div>
+
+    <!-- Productos -->
+    <div class="w-full h-full px-4 py-6 grid grid-cols-1 gap-6 md:grid-cols-3 lg:grid-cols-4">
+        @for (product of filteredProducts; track $index) {
+            @if (isGeneral()) {
+                <div (click)="irAGeneralProductDetails(product.id)" class="w-full bg-white shadow-lg rounded-lg p-4 flex flex-col items-center cursor-pointer">
+                
+                    <!-- Imagen del producto -->
+                    <img [src]="product.image" alt="{{ product.name }}" 
+                         class="w-full h-40 object-cover rounded-t-lg">
+                    
+                    <!-- Detalles del producto -->
+                    <div class="w-full text-center mt-4">
+                        <h2 class="text-xl font-bold text-gray-800">{{ product.name }} #{{product.id}}</h2>
+                        <p class="text-lg text-gray-600">{{ product.price.toLocaleString('es-CO', { style: 'currency', currency: 'COP' }) }}</p>
+                        <p class="text-base text-black text-justify">{{this.cortarTexto(product.description, 15)}}</p>
+                    </div>
+                </div>
+            }
+
+            @if(!isGeneral()){
+                <div (click)="irACustomerProductDetails(product.id)" class="w-full bg-white shadow-lg rounded-lg p-4 flex flex-col items-center cursor-pointer">
+                
+                    <!-- Imagen del producto -->
+                    <img [src]="product.image" alt="{{ product.name }}" 
+                         class="w-full h-40 object-cover rounded-t-lg">
+                    
+                    <!-- Detalles del producto -->
+                    <div class="w-full text-center mt-4">
+                        <h2 class="text-xl font-bold text-gray-800">{{ product.name }} #{{product.id}}</h2>
+                        <p class="text-lg text-gray-600">{{ product.price.toLocaleString('es-CO', { style: 'currency', currency: 'COP' }) }}</p>
+                        <p class="text-base text-black text-justify">{{this.cortarTexto(product.description, 15)}}</p>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+
+
+
+</section>

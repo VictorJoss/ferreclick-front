@@ -1,0 +1,16 @@
+.icon-circle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    background-color: transparent; /* gris claro */
+    color: #4b5563; /* gris oscuro */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .icon-circle:hover {
+    background-color: #1E5631; /* gris más claro al pasar el mouse */
+  }

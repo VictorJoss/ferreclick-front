@@ -6,7 +6,6 @@
         </div>
     </a>
     <!-- Ícono de carrito de compras -->
-     @if (isCustomerLoggedIn) {
         <div class="icon-circle group">
 
             <div class="relative">
@@ -47,14 +46,9 @@
                 </div>
               </div>
         </div>
-     }
 
-
-    <!-- icono para salir  -->
-     @if (isCustomerLoggedIn || isAdminLoggedIn) {
-        <div class="icon-circle" (click)="logout()">
-            <svg class="h-12 w-12 fill-primary hover:fill-white" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M8.25 5.25 9 4.5h9l.75.75v13.5l-.75.75H9l-.75-.75V16.5h1.5V18h7.5V6h-7.5v1.5h-1.5V5.25Z"/><path fill-rule="evenodd" clip-rule="evenodd" d="M7.06 12.75h7.19v-1.5H7.06l1.72-1.72-1.06-1.06L4.19 12l3.53 3.53 1.06-1.06-1.72-1.72Z"/></svg>
-        </div>
-     }
+      <div class="icon-circle" (click)="logout()">
+          <svg class="h-12 w-12 fill-primary hover:fill-white" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M8.25 5.25 9 4.5h9l.75.75v13.5l-.75.75H9l-.75-.75V16.5h1.5V18h7.5V6h-7.5v1.5h-1.5V5.25Z"/><path fill-rule="evenodd" clip-rule="evenodd" d="M7.06 12.75h7.19v-1.5H7.06l1.72-1.72-1.06-1.06L4.19 12l3.53 3.53 1.06-1.06-1.72-1.72Z"/></svg>
+      </div>
 
   </div>

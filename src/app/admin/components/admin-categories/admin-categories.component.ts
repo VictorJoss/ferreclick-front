@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CategoryService } from '../../../services/category/category.service';
-import { NavbarComponent } from "../navbar/navbar.component";
+import { NavbarComponent } from "../admin-navbar/navbar.component";
 import { Router } from '@angular/router';
 
 @Component({
