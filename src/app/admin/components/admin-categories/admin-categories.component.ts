@@ -34,5 +34,15 @@ export class AdminCategoriesComponent implements OnInit{
     this.router.navigate(['/admin/category/create'])
   }
 
-
+  deleteCategory(id: number): void {
+    this.categoryService.deleteCategoryById(id).subscribe({
+      next: (response) => {
+        alert("Producto eliminado exitosamente");
+        this.cargarCategorias();
+      },
+      error: (error) => {
+        console.error('Error al eliminar producto', error);
+      }
+    });
+  }
 }

@@ -29,4 +29,10 @@ export class CategoryService {
       headers: this.apiService.createAuthorizationHeader()
     });
   }
+
+  deleteCategoryById(categoryId: number): Observable<any> {
+    return this.http.delete<any>(`${BASIC_URL}api/product-categories/${categoryId}`, {
+      headers: this.apiService.createAuthorizationHeader()
+    });
+  }
 }
