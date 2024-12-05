@@ -44,4 +44,9 @@ export class CarritoService {
     });
   }
 
+  payCart(userId:any): Observable<any[]>{
+    return this.http.post<any[]>(BASIC_URL + `api/cart/pay/${userId}`,{}, {
+      headers: this.apiService.createAuthorizationHeader()
+    });
+  }
 }

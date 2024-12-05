@@ -121,7 +121,23 @@ export class CarritoDetailsComponent  implements OnInit{
     const userId = UserStorageService.getUserId();
     if(userId){
       this.carritoService.removeAllCartByUserId(userId).subscribe({
-        next: (response) =>{
+        next: () =>{
+          this.cargarCarrito();
+        },
+        error: (error) =>{
+          console.error(error);
+        }
+      })
+
+    }
+  }
+
+  payCart():void{
+    const userId = UserStorageService.getUserId();
+    if(userId){
+      this.carritoService.payCart(userId).subscribe({
+        next: () =>{
+          alert("Pago procesado exitosamente");
           this.cargarCarrito();
         },
         error: (error) =>{
