@@ -141,6 +141,7 @@ export class CarritoDetailsComponent  implements OnInit{
       this.carritoService.payCart(userId).subscribe({
         next: () =>{
           alert("Pago procesado exitosamente");
+          this.generarFactura();
           this.cargarCarrito();
         },
         error: (error) =>{
