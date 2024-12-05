@@ -1,1 +1,10 @@
 <app-navbar></app-navbar>
+@for (archivo of archivos; track $index) {
+  <div>
+    <h3>{{ archivo.nombreArchivo }}</h3>
+    <p>Total de líneas: {{ archivo.totalLineas }}</p>
+    <p>Líneas de código: {{ archivo.lineasCodigo }}</p>
+    <p>Líneas de comentario: {{ archivo.lineasComentario }}</p>
+  </div>
+}
+

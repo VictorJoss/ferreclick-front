@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Router, RouterLink, RouterLinkActive } from '@angular/router';
+import { Router } from '@angular/router';
 import { UserStorageService } from '../../../services/storage/user-storage.service';
 import { AuthService} from '../../../services/auth/auth.service';
 import { CarritoService } from '../../../services/carrito/carrito.service';
@@ -7,7 +7,7 @@ import { CarritoService } from '../../../services/carrito/carrito.service';
 @Component({
   selector: 'app-navbar-buttons',
   standalone: true,
-  imports: [RouterLink, RouterLinkActive],
+  imports: [],
   templateUrl: './navbar-buttons.component.html',
   styleUrl: './navbar-buttons.component.css'
 })
@@ -54,6 +54,10 @@ export class NavbarButtonsComponent {
     this.router.navigate(['/customer/shoppingc-details']);
   }
 
+  irAUserDetails():void{
+    this.router.navigate(['/customer/user-details']);
+  }
+
   cargarCarrito():void{
     // Obtener el userId desde el UserStorageService
     const userId = UserStorageService.getUserId();
@@ -64,7 +68,6 @@ export class NavbarButtonsComponent {
           // Guardar los datos del carrito en la variable
           this.carrito = carritoData;
           this.carrito = this.carrito.cartItems;
-          console.log(this.carrito);
         },
         error: (err) => {
           console.error('Error al obtener el carrito:', err);
