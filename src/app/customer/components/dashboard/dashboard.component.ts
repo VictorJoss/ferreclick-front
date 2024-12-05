@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { NavbarComponent } from '../customer-navbar/navbar.component';
 import { InfoTagHomeComponent } from '../../../UtilitiesComponents/info-tag-home/info-tag-home.component';
@@ -7,6 +7,7 @@ import { HomeAdvantagesComponent } from '../../../UtilitiesComponents/home-advan
 import { ProductsectionComponent } from '../productsection/productsection.component';
 import { FooterComponent } from '../footer/footer.component';
 
+
 @Component({
   selector: 'app-dashboard',
   standalone: true,
@@ -14,6 +15,6 @@ import { FooterComponent } from '../footer/footer.component';
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css'
 })
-export class DashboardComponent {
+export class DashboardComponent{
 
 }

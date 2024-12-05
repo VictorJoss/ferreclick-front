@@ -34,5 +34,9 @@ export class AdminCategoriesComponent implements OnInit{
     this.router.navigate(['/admin/category/create'])
   }
 
+  // deleteCategory(id:number):void{
+  //   this.categoryService.
+  // }
+
 
 }

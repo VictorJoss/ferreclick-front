@@ -3,6 +3,9 @@ import { FooterComponent } from '../footer/footer.component';
 import { NavbarComponent } from "../customer-navbar/navbar.component";
 import { UserStorageService } from '../../../services/storage/user-storage.service';
 import { CarritoService } from '../../../services/carrito/carrito.service';
+import jsPDF from 'jspdf';
+import autoTable from 'jspdf-autotable';
+
 
 @Component({
   selector: 'app-carrito-details',
@@ -131,4 +134,66 @@ export class CarritoDetailsComponent  implements OnInit{
 
     }
   }
+
+  generarFactura(): void {
+    const doc = new jsPDF();
+  
+    // Encabezado de la factura
+    doc.setFontSize(16);
+    doc.text("Factura de Compra", 105, 20, { align: "center" });
+  
+    // Información del cliente
+    const userId = UserStorageService.getUserId();
+    doc.setFontSize(12);
+  
+    // Preparar datos para la tabla
+    const tableBody = this.carrito.map((item: any) => {
+      const nombre = item.product.name;
+      const cantidad = item.quantity;
+      const precioUnitario = item.product.price;
+      const subtotal = cantidad * precioUnitario;
+  
+      return [
+        nombre,
+        cantidad,
+        precioUnitario.toLocaleString('es-CO', { style: 'currency', currency: 'COP' }),
+        subtotal.toLocaleString('es-CO', { style: 'currency', currency: 'COP' }),
+      ];
+    });
+  
+    // Agregar la tabla al PDF
+    autoTable(doc, {
+      startY: 60,
+      head: [['Producto', 'Cantidad', 'Precio Unitario', 'Subtotal']],
+      body: tableBody,
+      theme: 'striped',
+      styles: { halign: 'center' },
+      headStyles: { fillColor: [22, 160, 133] },
+      columnStyles: {
+        0: { halign: 'left' },
+        1: { halign: 'center' },
+        2: { halign: 'right' },
+        3: { halign: 'right' },
+      },
+    });
+  
+    // Asegurarse de que `finalY` esté disponible
+    const finalY = (doc as any).lastAutoTable?.finalY;
+  
+    // Totales
+    const total = this.precioTotalCarrito();
+    const iva = this.totalIVA();
+  
+    doc.setFontSize(12);
+    doc.text("IVA:", 130, finalY + 10);
+    doc.text(iva.toLocaleString('es-CO', { style: 'currency', currency: 'COP' }), 180, finalY + 10, { align: 'right' });
+  
+    doc.text("Total:", 130, finalY + 20);
+    doc.text(total.toLocaleString('es-CO', { style: 'currency', currency: 'COP' }), 180, finalY + 20, { align: 'right' });
+  
+    // Guardar el archivo
+    doc.save(`Factura_${userId}.pdf`);
+  }
+  
+  
 }

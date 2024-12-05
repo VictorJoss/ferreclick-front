@@ -10,7 +10,7 @@ import { PopupComponent } from '../../../UtilitiesComponents/popup/popup.compone
 @Component({
   selector: 'app-product-details',
   standalone: true,
-  imports: [NavbarComponent, FooterComponent, PopupComponent],
+  imports: [NavbarComponent, FooterComponent],
   templateUrl: './product-details.component.html',
   styleUrls: ['./product-details.component.css'],
 })
