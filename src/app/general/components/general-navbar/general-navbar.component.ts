@@ -11,6 +11,8 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
   styleUrl: './general-navbar.component.css'
 })
 export class GeneralNavbarComponent {
+
+  // Variables para manejar la barra de busqueda en caso de que se implemente
   searchTerm: string = '';
   carrito:any;
 

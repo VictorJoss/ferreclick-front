@@ -13,15 +13,18 @@ import { UserStorageService } from '../../../services/storage/user-storage.servi
 })
 export class UserDetailsComponent implements OnInit{
 
+  // variable para manejar el usuario
   user:any;
 
   constructor(private userService:UserService){}
 
+  // se obtiene el usuario al iniciar el componente
   ngOnInit(): void {
     this.obtenerUsuario();
     
   }
 
+  // metodo para obtener el usuario logueado en el sistema
   obtenerUsuario():void{
     this.userService.getUser(UserStorageService.getUserId()).subscribe({
       next: (response) =>{

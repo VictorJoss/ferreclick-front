@@ -8,6 +8,7 @@ import { AdminCategoriesComponent } from "./components/admin-categories/admin-ca
 import { EditProductComponent } from "./components/edit-product/edit-product.component";
 import { EditCategoryComponent } from "./components/edit-category/edit-category.component";
 
+// Rutas para el módulo de administración
 export const ADMIN_ROUTES: Routes = [
     {path: '', component: AdminComponent},
     {path: 'dashboard', component: DashboardComponent},

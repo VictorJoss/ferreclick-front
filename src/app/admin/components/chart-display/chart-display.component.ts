@@ -13,11 +13,15 @@ import { isPlatformBrowser } from '@angular/common';
 })
 export class ChartDisplayComponent implements OnInit{
   @ViewChild('barChart') barChart?: BaseChartDirective;
-  @ViewChild('lineChart') lineChart?: BaseChartDirective;
   @ViewChild('pieChart') pieChart?: BaseChartDirective;
   @ViewChild('doughnutChart') doughnutChart?: BaseChartDirective;
-  @ViewChild('radarChart') radarChart?: BaseChartDirective;
-  @ViewChild('polarChart') polarChart?: BaseChartDirective;
+
+
+  // Graficos no usados
+  // @ViewChild('radarChart') radarChart?: BaseChartDirective;
+  // @ViewChild('polarChart') polarChart?: BaseChartDirective;
+  // @ViewChild('lineChart') lineChart?: BaseChartDirective;
+
 
   isBrowser: boolean;
 
@@ -38,24 +42,24 @@ export class ChartDisplayComponent implements OnInit{
     }
   };
 
-  lineChartData: ChartConfiguration<'line'>['data'] = {
-    labels: [],
-    datasets: [{
-      data: [],
-      label: 'Analytics Trend',
-      fill: false,
-      tension: 0.1,
-      borderColor: 'rgb(75, 192, 192)',
-      backgroundColor: 'rgba(75, 192, 192, 0.5)',
-    }]
-  };
+  // lineChartData: ChartConfiguration<'line'>['data'] = {
+  //   labels: [],
+  //   datasets: [{
+  //     data: [],
+  //     label: 'Analytics Trend',
+  //     fill: false,
+  //     tension: 0.1,
+  //     borderColor: 'rgb(75, 192, 192)',
+  //     backgroundColor: 'rgba(75, 192, 192, 0.5)',
+  //   }]
+  // };
 
-  lineChartOptions: ChartConfiguration<'line'>['options'] = {
-    responsive: true,
-    plugins: {
-      title: { display: true, text: 'Line Trend Analysis' }
-    }
-  };
+  // lineChartOptions: ChartConfiguration<'line'>['options'] = {
+  //   responsive: true,
+  //   plugins: {
+  //     title: { display: true, text: 'Line Trend Analysis' }
+  //   }
+  // };
 
   pieChartData: ChartConfiguration<'pie'>['data'] = {
     labels: [],
@@ -76,28 +80,6 @@ export class ChartDisplayComponent implements OnInit{
     responsive: true,
     plugins: {
       title: { display: true, text: 'Distribution Analysis' }
-    }
-  };
-
-  pieChartData2: ChartConfiguration<'pie'>['data'] = {
-    labels: [],
-    datasets: [{
-      data: [],
-      backgroundColor: [
-        'rgba(255, 99, 132, 0.8)',
-        'rgba(54, 162, 235, 0.8)',
-        'rgba(255, 206, 86, 0.8)',
-        'rgba(75, 192, 192, 0.8)',
-        'rgba(153, 102, 255, 0.8)',
-        'rgba(255, 159, 64, 0.8)'
-      ]
-    }]
-  };
-
-  pieChartOptions2: ChartConfiguration<'pie'>['options'] = {
-    responsive: true,
-    plugins: {
-      title: { display: true, text: 'test' }
     }
   };
 
@@ -123,45 +105,45 @@ export class ChartDisplayComponent implements OnInit{
     }
   };
 
-  radarChartData: ChartConfiguration<'radar'>['data'] = {
-    labels: [],
-    datasets: [{
-      data: [],
-      label: 'Radar Analysis',
-      backgroundColor: 'rgba(255, 99, 132, 0.2)',
-      borderColor: 'rgb(255, 99, 132)',
-      pointBackgroundColor: 'rgb(255, 99, 132)',
-    }]
-  };
+  // radarChartData: ChartConfiguration<'radar'>['data'] = {
+  //   labels: [],
+  //   datasets: [{
+  //     data: [],
+  //     label: 'Radar Analysis',
+  //     backgroundColor: 'rgba(255, 99, 132, 0.2)',
+  //     borderColor: 'rgb(255, 99, 132)',
+  //     pointBackgroundColor: 'rgb(255, 99, 132)',
+  //   }]
+  // };
 
-  radarChartOptions: ChartConfiguration<'radar'>['options'] = {
-    responsive: true,
-    plugins: {
-      title: { display: true, text: 'Radar Analysis' }
-    }
-  };
+  // radarChartOptions: ChartConfiguration<'radar'>['options'] = {
+  //   responsive: true,
+  //   plugins: {
+  //     title: { display: true, text: 'Radar Analysis' }
+  //   }
+  // };
 
-  polarChartData: ChartConfiguration<'polarArea'>['data'] = {
-    labels: [],
-    datasets: [{
-      data: [],
-      backgroundColor: [
-        'rgba(255, 99, 132, 0.8)',
-        'rgba(54, 162, 235, 0.8)',
-        'rgba(255, 206, 86, 0.8)',
-        'rgba(75, 192, 192, 0.8)',
-        'rgba(153, 102, 255, 0.8)',
-        'rgba(255, 159, 64, 0.8)'
-      ]
-    }]
-  };
+  // polarChartData: ChartConfiguration<'polarArea'>['data'] = {
+  //   labels: [],
+  //   datasets: [{
+  //     data: [],
+  //     backgroundColor: [
+  //       'rgba(255, 99, 132, 0.8)',
+  //       'rgba(54, 162, 235, 0.8)',
+  //       'rgba(255, 206, 86, 0.8)',
+  //       'rgba(75, 192, 192, 0.8)',
+  //       'rgba(153, 102, 255, 0.8)',
+  //       'rgba(255, 159, 64, 0.8)'
+  //     ]
+  //   }]
+  // };
 
-  polarChartOptions: ChartConfiguration<'polarArea'>['options'] = {
-    responsive: true,
-    plugins: {
-      title: { display: true, text: 'Polar Area Analysis' }
-    }
-  };
+  // polarChartOptions: ChartConfiguration<'polarArea'>['options'] = {
+  //   responsive: true,
+  //   plugins: {
+  //     title: { display: true, text: 'Polar Area Analysis' }
+  //   }
+  // };
 
   constructor(
     private analyticsService: AnalyticsService, 
@@ -170,9 +152,9 @@ export class ChartDisplayComponent implements OnInit{
     this.isBrowser = isPlatformBrowser(this.platformId);
   }
 
+  // Obtener los datos para las analiticas
   ngOnInit() {
     this.analyticsService.chartData$.subscribe(data => {
-      this.pieChart2(data);
     });
 
     this.analyticsService.getMonthlyRevenue().subscribe(data => {
@@ -204,12 +186,4 @@ export class ChartDisplayComponent implements OnInit{
     });
   }
 
-  private pieChart2(data: any[]) {
-    const labels = data.map(item => item.label);
-    const values = data.map(item => item.value);
-
-    this.pieChartData2.labels = ['Hola','Chao'];
-    this.pieChartData2.datasets[0].data = [1,2];
-    this.pieChart?.update();
-  }
 }

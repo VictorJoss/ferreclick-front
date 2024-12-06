@@ -1,4 +1,7 @@
+<!-- Comprobacion de si el entorno es de navegador o no -->
 @if (isBrowser) {<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4">
+
+  <!-- Grafico de aproximado de ventas por mes -->
     <div class="bg-white p-4 rounded-lg shadow">
       <h3 class="text-center mb-4 text-gray-700">Aproximado de ventas por mes</h3>
       <canvas
@@ -10,19 +13,9 @@
       >
       </canvas>
     </div>
-    
-    <div class="bg-white p-4 rounded-lg shadow">
-      <h3 class="text-center mb-4 text-gray-700">Line Chart</h3>
-      <canvas
-        baseChart
-        #lineChart="base-chart"
-        [data]="lineChartData"
-        [options]="lineChartOptions"
-        [type]="'line'"
-      >
-      </canvas>
-    </div>
+    <!-- fin de grafico de aproximado de ventas por mes -->
 
+    <!-- Grafico de productos mas agregados al carrito -->
     <div class="bg-white p-4 rounded-lg shadow">
       <h3 class="text-center mb-4 text-gray-700">Productos más agregados al carrito</h3>
       <canvas
@@ -34,19 +27,9 @@
       >
       </canvas>
     </div>
+    <!-- fin de grafico de productos mas agregados al carrito -->
 
-    <div class="bg-white p-4 rounded-lg shadow">
-      <h3 class="text-center mb-4 text-gray-700">Test</h3>
-      <canvas
-        baseChart
-        #pieChart="base-chart"
-        [data]="pieChartData2"
-        [options]="pieChartOptions2"
-        [type]="'pie'"
-      >
-      </canvas>
-    </div>
-
+    <!-- Grafico de categorias mas agregadas al carrito -->
     <div class="bg-white p-4 rounded-lg shadow">
       <h3 class="text-center mb-4 text-gray-700">Categorias más agregadas al carrito</h3>
       <canvas
@@ -58,31 +41,9 @@
       >
       </canvas>
     </div>
-
-    <div class="bg-white p-4 rounded-lg shadow">
-      <h3 class="text-center mb-4 text-gray-700">Radar Chart</h3>
-      <canvas
-        baseChart
-        #radarChart="base-chart"
-        [data]="radarChartData"
-        [options]="radarChartOptions"
-        [type]="'radar'"
-      >
-      </canvas>
-    </div>
-
-    <div class="bg-white p-4 rounded-lg shadow">
-      <h3 class="text-center mb-4 text-gray-700">Polar Area Chart</h3>
-      <canvas
-        baseChart
-        #polarChart="base-chart"
-        [data]="polarChartData"
-        [options]="polarChartOptions"
-        [type]="'polarArea'"
-      >
-      </canvas>
-    </div>
+    <!-- fin de grafico de categorias mas agregadas al car-->
   </div>
 }@else {
+  <!-- Mensaje de que las graficas no están disponibles en este entorno -->
   <p>Las graficas no está disponible en este entorno.</p>
 }

@@ -12,8 +12,11 @@ import { CarritoService } from '../../../services/carrito/carrito.service';
   styleUrl: './navbar-buttons.component.css'
 })
 export class NavbarButtonsComponent {
+
+  // Variable para almacenar el carrito
   carrito:any = [];
 
+  // CartItems DTO
   // "cartItems": [
   //   {
   //       "id": 1,
@@ -34,30 +37,36 @@ export class NavbarButtonsComponent {
     private carritoService:CarritoService
   ){}
 
+  // se carga el carrito al iniciar el componente
   ngOnInit(): void{
 
     this.cargarCarrito();
     
   }
   
+  // metodo para cerrar sesion
   logout(){
     UserStorageService.logout();
     this.authService.logout();
     this.router.navigateByUrl('');
   }
 
+  // metodo para calcular el total del carrito
   calcularTotal(): number {
     return this.carrito.reduce((total, item) => total + item.quantity * item.product.price, 0);
   }
 
+  // metodo para redirigir a la pagina de detalles del carrito
   irACarritoDetails():void{
     this.router.navigate(['/customer/shoppingc-details']);
   }
 
+  // metodo para redirigir a la pagina de detalles del usuario
   irAUserDetails():void{
     this.router.navigate(['/customer/user-details']);
   }
 
+  // metodo para cargar el carrito
   cargarCarrito():void{
     // Obtener el userId desde el UserStorageService
     const userId = UserStorageService.getUserId();

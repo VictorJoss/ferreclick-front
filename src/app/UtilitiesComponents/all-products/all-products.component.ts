@@ -24,7 +24,7 @@ export class AllProductsComponent implements OnInit{
   selectedCategories: Set<number> = new Set(); // Conjunto de categorías seleccionadas
 
   constructor(private productService:ProductService, private router:Router, private categoryService:CategoryService){}
-
+  
   ngOnInit(): void {
     this.cargarProductos();
     this.cargarCategorias();

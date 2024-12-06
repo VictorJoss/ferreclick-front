@@ -9,6 +9,7 @@ export class AdminGuard implements CanActivate {
 
   constructor(private router: Router) {}
 
+  // guard para verificar si o usuario es un administrador.
   canActivate(): boolean {
     const isAdmin = UserStorageService.isAdminLoggedIn();
     if (!isAdmin) {

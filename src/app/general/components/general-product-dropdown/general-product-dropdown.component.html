@@ -1,9 +1,12 @@
 <div class="container mx-auto px-4 pt-4">
+
+    <!-- Titulo de la sección del dropdown -->
     <div class="w-full flex flex-row justify-start items-center mb-4">
       <div class="w-2 h-8 bg-primary mr-1 md:h-16 lg:h-24"></div>
       <h1 class="text-4xl text-primary font-bold md:text-6xl lg:text-8xl">{{ titulo }}</h1>
     </div>
   
+    <!-- imagen del dropdown -->
     <img [src]="img" alt="{{ titulo }}" class="w-full object-cover h-auto mb-4">
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
       @for (product of displayedProducts(); track $index) {

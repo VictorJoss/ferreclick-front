@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, catchError, map, of } from 'rxjs';
 import { UserStorageService } from '../storage/user-storage.service';
 
+// URL base de la API
 const BASIC_URL = "http://localhost:8080/";
 
 @Injectable({
@@ -14,6 +15,7 @@ export class AuthService {
     private userStorageService: UserStorageService
   ) {}
 
+  // Método para iniciar sesión
   login(email: string, password: string): Observable<boolean> {
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
     const body = { email, password };
@@ -33,6 +35,7 @@ export class AuthService {
       );
   }
 
+  // Método para registrar un usuario
   register(name: string, username: string, email: string, password: string, role: string): Observable<boolean> {
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
     const body = { name, username, email, password, role };
@@ -53,6 +56,7 @@ export class AuthService {
       );
   }
 
+  // Método para cerrar sesión
   logout(): Observable<void> {
     return this.http.post<void>(`${BASIC_URL}api/auth/logout`, {});
   }

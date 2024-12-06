@@ -12,6 +12,7 @@ import { UserStorageService } from '../services/storage/user-storage.service';
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
+  // formulario de inicio de sesión
   form: FormGroup;
   generalError: string | null = null; // Para mostrar un error general encima del botón
 
@@ -20,12 +21,14 @@ export class LoginComponent {
     private authService: AuthService,
     private router: Router
   ) {
+    // formulario
     this.form = this.fb.group({
       email: [null, [Validators.required, Validators.email]],
       password: [null, [Validators.required]]
     });
   }
 
+  // metodo de envio del formulario
   onSubmit(): void {
     if (this.form.invalid) {
       this.markFieldsAsTouched(); // Marca los campos inválidos como tocados

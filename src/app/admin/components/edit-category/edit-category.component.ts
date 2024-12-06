@@ -14,16 +14,19 @@ import { response } from 'express';
 })
 export class EditCategoryComponent implements OnInit{
 
+  // variables para tener los datos de las categorias
   categoryId:any;
   category:any;
 
   constructor(private categoryService:CategoryService, private route: ActivatedRoute, private router: Router){}
 
+  // Nos traemos los datos de la categoria que queremos editar
   ngOnInit(): void {
     this.categoryId = this.route.snapshot.paramMap.get('id');
     this.category = this.getCategory();
   }
 
+  // Creamos un formulario para editar
   categoryFrom = signal<FormGroup>(
     new FormGroup({
       name: new FormControl(null, [Validators.required]),
@@ -31,6 +34,7 @@ export class EditCategoryComponent implements OnInit{
     })
   );
 
+  // Funcion para editar la categoria
   editCategory():void{
 
     const categoryDTO = {
@@ -50,6 +54,7 @@ export class EditCategoryComponent implements OnInit{
     })
   }
 
+  // Funcion para traer los datos de la categoria
   getCategory():void{
     this.categoryService.getCategoryById(this.categoryId).subscribe({
       next: (response) =>{
@@ -62,6 +67,7 @@ export class EditCategoryComponent implements OnInit{
     })
   }
 
+  // Funcion para cargar los datos en el formulario
   cargarFormulario():void{
     this.categoryFrom().patchValue({
       name: this.category.name,

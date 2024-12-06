@@ -1,16 +1,20 @@
 <div class="w-screen h-screen flex flex-col items-center">
 
+    <!-- navbar -->
     <div class="w-full h-fit">
       <app-navbar></app-navbar>
       <hr class="w-full bg-black">
     </div>
+    <!-- Fin navbar -->
 
+    <!-- formulario de creación de categoría -->
     <div class="w-full h-full flex items-center justify-center">
       <div class="w-full max-w-sm p-6 bg-white rounded-lg shadow-lg lg:max-w-md">
         <h2 class="text-3xl font-bold mb-6 text-center uppercase text-primary">Crear Categoria</h2>
       
         <form [formGroup]="categoryForm()" (ngSubmit)="addCategory()">
-            
+
+          <!-- nombre   -->
           <div class="mb-4">
             <label class="block text-gray-700 text-sm font-bold mb-2" for="name">Nombre</label>
             <input
@@ -25,9 +29,10 @@
                     Por favor, ingresa un nombre.
                 </div>
             }
-    
           </div>
+          <!-- fin nombre -->
       
+          <!-- descripción -->
           <div class="mb-6">
             <label class="block text-gray-700 text-sm font-bold mb-2" for="description">Descripción</label>
             <input
@@ -43,7 +48,9 @@
                 </div>
             }
           </div>
+          <!-- fin descripción -->
       
+          <!-- botón de envío -->
           <button
             type="submit"
             [disabled]="categoryForm().invalid"

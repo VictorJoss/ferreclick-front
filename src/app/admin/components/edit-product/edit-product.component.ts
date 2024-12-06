@@ -14,8 +14,11 @@ import { CommonModule } from '@angular/common';
   styleUrl: './edit-product.component.css'
 })
 export class EditProductComponent {
+  // variables de los produtos y categorias
   categories: any[] = [];
   product:any;
+
+  // formulario de productos
   productForm = signal<FormGroup>(
     new FormGroup({
       name: new FormControl(null, [Validators.required]),
@@ -25,6 +28,8 @@ export class EditProductComponent {
       categories: new FormArray([], Validators.required) // Array de IDs seleccionados.
     })
   );
+
+  // variables de validacion de imagen
   currentImage: string = ''; 
   isEditingImage = false; 
   selectedFile: File | null = null; 
@@ -37,12 +42,14 @@ export class EditProductComponent {
     private route: ActivatedRoute
   ) {}
 
+  // Nos traemos las categorias y el producto que queremos editar
   ngOnInit() {
     const productId = this.route.snapshot.paramMap.get('id')
     this.loadCategories();
     this.getProduct(productId);
   }
 
+  // Cargamos las categorias
   loadCategories() {
     this.categoryService.getCategories().subscribe({
       next: (data) => {
@@ -54,6 +61,7 @@ export class EditProductComponent {
     });
   }
 
+  // Funciones de los productos
   onCategoryChange(event: Event, categoryId: number) {
     const categoryFormArray = this.productForm().get('categories') as FormArray;
     const isChecked = (event.target as HTMLInputElement).checked;
@@ -70,16 +78,19 @@ export class EditProductComponent {
     }
   }
 
+  // Comprobamos si una categoria esta seleccionada
   isCategorySelected(categoryId: number): boolean {
     const categoryFormArray = this.productForm().get('categories') as FormArray;
     return categoryFormArray.value.includes(categoryId);
   }
 
+  // Comprobamos si el formulario es valido
   isCategoryFormInvalid(): boolean {
     const categoryFormArray = this.productForm().get('categories') as FormArray;
     return categoryFormArray.length === 0;
   }
 
+  // Nos traemos el producto que queremos editar
   getProduct(id: any): void {
     this.productService.getProductById(id).subscribe({
       next: (response) => {
@@ -105,6 +116,7 @@ export class EditProductComponent {
     });
   }
 
+  // funcion para editar el producto
   editProduct() {
     if (this.productForm().invalid) {
       this.productForm().markAllAsTouched();
@@ -136,6 +148,7 @@ export class EditProductComponent {
     });
   }
 
+  // Funciones de la imagen
   editImage() {
     this.isEditingImage = true;
   }

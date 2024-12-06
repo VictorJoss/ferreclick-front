@@ -7,6 +7,7 @@
 
     <!-- Grafico de Metricas -->
     <div>
+      <!-- validacion de si es un navegador -->
         @if (isBrowser) {
             <div class="flex flex-col items-center mb-2">
                 <!-- Grafica Metrica -->
@@ -21,6 +22,7 @@
                     >
                     </canvas>
                   </div>
+                  <!-- Fin grafica Metrica -->
 
 
                   <!-- Total de la Metrica -->
@@ -28,6 +30,28 @@
                         <h2 class="p-6 text-4xl">{{this.lineasDeCodigoComentadas}}/{{this.lineasDeCodigo}} = {{this.totalMetrica}}%</h2>
                    </div>
             </div>
+
+            <div class="flex flex-col items-center mb-2">
+              <!-- Grafica Metrica -->
+              <div class="bg-white p-4 rounded-lg shadow">
+                  <h3 class="text-center mb-4 text-gray-700">Metricas de Documentacion BackEnd</h3>
+                  <canvas
+                    baseChart
+                    #pieChart="base-chart"
+                    [data]="pieChartData2"
+                    [options]="pieChartOptions2"
+                    [type]="'pie'"
+                  >
+                  </canvas>
+                </div>
+                <!-- Fin grafica Metrica -->
+
+
+                <!-- Total de la Metrica -->
+                 <div class="flex">
+                      <h2 class="p-6 text-4xl">{{this.lineasDeCodigoComentadasJava}}/{{this.lineasDeCodigoJava}} = {{this.totalMetricaJava}}%</h2>
+                 </div>
+          </div>
         }
     </div>
 

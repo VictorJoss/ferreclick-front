@@ -1,15 +1,19 @@
 <div class="w-screen h-screen flex flex-col items-center">
 
+    <!-- navbar -->
     <div class="w-full h-fit">
       <app-navbar></app-navbar>
       <hr class="w-full bg-black">
     </div>
+    <!-- fin navbar -->
   
+    <!-- formulario editar producto -->
     <div class="w-full h-full flex items-center justify-center">
       <div class="w-full max-w-4xl p-4 bg-white rounded-lg shadow-lg lg:max-w-6xl mt-2">
         <h2 class="text-2xl mb-4 text-center uppercase font-bold text-primary lg:text-4xl">Editar Producto</h2>
         <form [formGroup]="productForm()" (ngSubmit)="editProduct()" class="grid grid-cols-1 md:grid-cols-2 gap-4">
     
+          <!-- nombre -->
           <div>
             <label class="block text-gray-700 text-sm font-bold mb-1" for="name">Nombre</label>
             <input
@@ -26,7 +30,9 @@
             }
 
           </div>
+          <!-- fin nombre -->
     
+          <!-- descripción -->
           <div>
             <label class="block text-gray-700 text-sm font-bold mb-1" for="description">Descripción</label>
             <input
@@ -43,7 +49,9 @@
             }
 
           </div>
+          <!-- fin descripción -->
     
+          <!-- imagen -->
           <div>
             <label class="block text-gray-700 text-sm font-bold mb-1" for="image">Imagen</label>
           
@@ -58,6 +66,7 @@
                 Cambiar Imagen
               </button>
             </div>
+            <!-- fin imagen -->
           
             <!-- Input file si se está editando la imagen -->
             <input
@@ -91,6 +100,7 @@
 
           </div>
     
+          <!-- categorias -->
           <div class="col-span-1 md:col-span-2">
             <label for="categories" class="block text-gray-700 text-sm font-bold mb-1">Categorías</label>
             <div class="grid grid-cols-2 md:grid-cols-4 gap-2">
@@ -112,9 +122,11 @@
                     Seleccione al menos una categoría.
                 </div>
             }
+            <!-- fin categorias -->
 
           </div>
     
+          <!-- botón agregar producto -->
           <div class="col-span-1 md:col-span-2">
             <button
               type="submit"
@@ -123,6 +135,7 @@
             >
               Agregar Producto
             </button>
+            <!--fin botón agregar producto -->
           </div>
         </form>
       </div>

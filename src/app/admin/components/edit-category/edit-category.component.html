@@ -1,15 +1,19 @@
 <div class="w-screen h-screen flex flex-col items-center">
 
+    <!-- navbar -->
     <div class="w-full h-fit">
       <app-navbar></app-navbar>
       <hr class="w-full bg-black">
     </div>
+    <!-- fin navbar -->
   
+    <!-- formulario para editar categorias -->
     <div class="w-full h-full flex items-center justify-center">
       <div class="w-full max-w-4xl p-4 bg-white rounded-lg shadow-lg lg:max-w-6xl mt-2">
-        <h2 class="text-2xl mb-4 text-center uppercase font-bold text-primary lg:text-4xl">Editar Producto</h2>
+        <h2 class="text-2xl mb-4 text-center uppercase font-bold text-primary lg:text-4xl">Editar Categoria</h2>
         <form [formGroup]="categoryFrom()" (ngSubmit)="editCategory()" class="grid grid-cols-1 gap-4">
     
+            <!-- nombre -->
           <div>
             <label class="block text-gray-700 text-sm font-bold mb-1" for="name">Nombre</label>
             <input
@@ -26,7 +30,9 @@
             }
 
           </div>
+          <!-- fin nombre -->
     
+          <!-- descripcion -->
           <div>
             <label class="block text-gray-700 text-sm font-bold mb-1" for="description">Descripción</label>
             <textarea
@@ -41,6 +47,7 @@
                 </div>
             }
           </div>
+          <!-- fin descripcion -->
 
           <!-- Boton -->
             <div class="w-full h-fit flex justify-center items-center">
@@ -56,6 +63,7 @@
 
 
         </form>
+        <!-- fin formulario -->
       </div>
     </div>
     

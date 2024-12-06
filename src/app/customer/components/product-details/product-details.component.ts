@@ -15,6 +15,8 @@ import { PopupComponent } from '../../../UtilitiesComponents/popup/popup.compone
   styleUrls: ['./product-details.component.css'],
 })
 export class ProductDetailsComponent implements OnInit {
+
+  // Variables para el producto y la cantidad
   product: any;
   cantidad: number = 1; // Cantidad inicial
   carrito:any = [];
@@ -22,6 +24,7 @@ export class ProductDetailsComponent implements OnInit {
 
   constructor(private route: ActivatedRoute, private productService: ProductService, private carritoService:CarritoService) {}
 
+  // Se obtiene el id del producto de la URL y se llama al servicio para obtener el producto por ID.
   ngOnInit(): void {
     const productId = this.route.snapshot.paramMap.get('id');
     if (productId) {
@@ -30,19 +33,23 @@ export class ProductDetailsComponent implements OnInit {
       });
     }
     
+    // se carga el carrito
     this.cargarCarrito();
   }
 
+  // Métodos para incrementar la cantidad de producto
   incrementarCantidad(): void {
     this.cantidad++;
   }
 
+  // decrementar la cantidad del producto
   decrementarCantidad(): void {
     if (this.cantidad > 1) {
       this.cantidad--;
     }
   }
 
+  // Método para cambiar la cantidad del producto
   cambiarCantidad(event: Event): void {
     const input = event.target as HTMLInputElement;
     const valor = parseInt(input.value, 10);
@@ -103,6 +110,7 @@ export class ProductDetailsComponent implements OnInit {
     }
   }
 
+  // Método para mostrar el popup
   triggerPopup(): void {
     this.popupComponent.showTimedPopup('Crea una cuenta para agregar elementos al carrito.');
   }

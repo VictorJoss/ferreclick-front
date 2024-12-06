@@ -14,8 +14,10 @@ import { CategoryService } from '../../../services/category/category.service';
   styleUrl: './post-product.component.css'
 })
 export class PostProductComponent implements OnInit {
+  // variables para el formulario de productos
   categories: any[] = [];
 
+  // creacion del formulario de productos
   productForm = signal<FormGroup>(
     new FormGroup({
       name: new FormControl(null, [Validators.required]),
@@ -26,16 +28,19 @@ export class PostProductComponent implements OnInit {
     })
   );
 
+  // usamos productService para agregar productos y categoryService para obtener las categorías.
   constructor(
     private productService: ProductService,
     private categoryService:CategoryService,
     private router: Router
   ) {}
 
+  // cargamos las categorías al iniciar el componente.
   ngOnInit() {
     this.loadCategories();
   }
 
+  // obtenemos las categorías y las guardamos en la variable
   loadCategories() {
     this.categoryService.getCategories().subscribe({
       next: (data) => {
@@ -47,6 +52,7 @@ export class PostProductComponent implements OnInit {
     });
   }
 
+  // funciones para manejar las categorías seleccionadas.
   onCategoryChange(event: Event, categoryId: number) {
     const categoryFormArray = this.productForm().get('categories') as FormArray;
     const isChecked = (event.target as HTMLInputElement).checked;
@@ -63,16 +69,19 @@ export class PostProductComponent implements OnInit {
     }
   }
 
+  // Funcion para comprobar si una categoría está seleccionada.
   isCategorySelected(categoryId: number): boolean {
     const categoryFormArray = this.productForm().get('categories') as FormArray;
     return categoryFormArray.value.includes(categoryId);
   }
 
+  // Función para comprobar si el formulario de categorías es invalido.
   isCategoryFormInvalid(): boolean {
     const categoryFormArray = this.productForm().get('categories') as FormArray;
     return categoryFormArray.length === 0;
   }
 
+  // Función para agregar un producto.
   addProduct() {
     if (this.productForm().valid) {
       const formData = new FormData();

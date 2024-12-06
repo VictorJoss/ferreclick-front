@@ -1,15 +1,19 @@
 <div class="w-screen h-screen flex flex-col items-center">
 
+  <!-- navbar -->
   <div class="w-full h-fit">
     <app-navbar></app-navbar>
     <hr class="w-full bg-black">
   </div>
+  <!-- fin navbar -->
 
+  <!-- formulario de agregar producto -->
   <div class="w-full h-full flex items-center justify-center">
     <div class="w-full max-w-4xl p-4 bg-white rounded-lg shadow-lg lg:max-w-6xl mt-2">
       <h2 class="text-2xl mb-4 text-center uppercase font-bold text-primary lg:text-4xl">Agregar Producto</h2>
       <form [formGroup]="productForm()" (ngSubmit)="addProduct()" class="grid grid-cols-1 md:grid-cols-2 gap-4">
-  
+        
+        <!-- campo de nombre -->
         <div>
           <label class="block text-gray-700 text-sm font-bold mb-1" for="name">Nombre</label>
           <input
@@ -23,7 +27,9 @@
             Por favor, ingresa un nombre.
           </div>
         </div>
+        <!-- fin campo de nombre -->
   
+        <!-- campo descripción -->
         <div>
           <label class="block text-gray-700 text-sm font-bold mb-1" for="description">Descripción</label>
           <input
@@ -37,7 +43,9 @@
             La descripción es obligatoria.
           </div>
         </div>
+        <!-- fin campo descripción -->
   
+        <!-- campo de imagen -->
         <div>
           <label class="block text-gray-700 text-sm font-bold mb-1" for="image">Imagen</label>
           <input
@@ -50,7 +58,9 @@
             Las imágenes son obligatorias.
           </div>
         </div>
+        <!-- fin campo de imagen -->
   
+        <!-- campo de precio -->
         <div>
           <label class="block text-gray-700 text-sm font-bold mb-1" for="price">Precio</label>
           <input
@@ -65,7 +75,9 @@
             El precio es obligatorio.
           </div>
         </div>
+        <!-- fin campo de precio -->
   
+        <!-- campo de categorias -->
         <div class="col-span-1 md:col-span-2">
           <label for="categories" class="block text-gray-700 text-sm font-bold mb-1">Categorías</label>
           <div class="grid grid-cols-2 md:grid-cols-4 gap-2">
@@ -84,7 +96,9 @@
             Seleccione al menos una categoría.
           </div>
         </div>
+        <!-- fin de campo de categorias -->
   
+        <!-- boton de envio -->
         <div class="col-span-1 md:col-span-2">
           <button
             type="submit"

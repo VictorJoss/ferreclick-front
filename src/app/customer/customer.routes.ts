@@ -6,6 +6,7 @@ import { CarritoDetailsComponent } from "./components/carrito-details/carrito-de
 import { AllProductsComponent } from "../UtilitiesComponents/all-products/all-products.component";
 import { UserDetailsComponent } from "./components/user-details/user-details.component";
 
+// Rutas hijas de Customer para el módulo de Customer
 export const CUSTOMER_ROUTES: Routes = [
     {path: '', component: CustomerComponent},
     {path: 'dashboard', component: DashboardComponent},

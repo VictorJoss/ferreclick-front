@@ -14,6 +14,7 @@ export class AdminNavbarButtonsComponent {
 
   constructor(private authService:AuthService, private router:Router){}
   
+  // Metodo para cerrar sesion
   logout(){
     UserStorageService.logout();
     this.authService.logout();

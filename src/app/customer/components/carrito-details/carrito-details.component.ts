@@ -16,20 +16,24 @@ import autoTable from 'jspdf-autotable';
 })
 export class CarritoDetailsComponent  implements OnInit{
 
+  // variable para guardar el carrito
   carrito:any = [];
 
   constructor(private carritoService:CarritoService){}
 
+  // se carga el carrito al iniciar el componente
   ngOnInit(): void {
     this.cargarCarrito();
   }
 
+  // metodo para incrementar la cantidad de un producto
   incrementarCantidad(id:any): void {
     this.carrito.find(producto => producto.product.producId == id).quantity++;
     const quantity = this.carrito.find(producto => producto.product.producId == id).quantity;
     this.agregarAlCarrito(id, quantity);
   }
 
+  // metodo para decrementar la cantidad de un producto
   decrementarCantidad(id:any): void {
     if (this.carrito.find(producto => producto.product.producId == id).quantity > 1) {
       this.carrito.find(producto => producto.product.producId == id).quantity--;
@@ -38,6 +42,7 @@ export class CarritoDetailsComponent  implements OnInit{
     }
   }
 
+  // metodo para cambiar la cantidad de un producto
   cambiarCantidad(event: Event, id:any): void {
     const input = event.target as HTMLInputElement;
     const valor = parseInt(input.value, 10);
@@ -46,6 +51,7 @@ export class CarritoDetailsComponent  implements OnInit{
     this.carrito.find(producto => producto.id == id).cantidad = isNaN(valor) || valor < 1 ? 1 : valor;
   }
 
+  // metodo para calcular el total de un producto
   calcularTotal(precio:number, cantidad:number):number{
     return precio * cantidad;
   }
@@ -120,6 +126,7 @@ export class CarritoDetailsComponent  implements OnInit{
     }
   }
 
+  // BORRAR TODO EL CARRITO
   borrarTodoElCarrito():void{
     const userId = UserStorageService.getUserId();
     if(userId){
@@ -135,6 +142,7 @@ export class CarritoDetailsComponent  implements OnInit{
     }
   }
 
+  // PAGAR CARRITO
   payCart():void{
     const userId = UserStorageService.getUserId();
     if(userId){
@@ -152,6 +160,7 @@ export class CarritoDetailsComponent  implements OnInit{
     }
   }
 
+  // GENERAR FACTURA
   generarFactura(): void {
     const doc = new jsPDF();
   

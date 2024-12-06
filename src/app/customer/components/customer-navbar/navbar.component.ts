@@ -12,6 +12,7 @@ import { NavbarButtonsComponent } from '../customer-navbar-buttons/navbar-button
 })
 export class NavbarComponent implements OnInit{
 
+  // variables para el buscador y el carrito
   searchTerm: string = '';
   carrito:any;
 
@@ -21,6 +22,7 @@ export class NavbarComponent implements OnInit{
 
   }
 
+  // metodos para la implementacion del buscador si da tiempo
   @Output() search: EventEmitter<string> = new EventEmitter<string>();
 
   onSearch() {

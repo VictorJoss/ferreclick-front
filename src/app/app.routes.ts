@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 import { SignupComponent } from './signup/signup.component';
 import { LoginComponent } from './login/login.component';
 
+// Rutas de la aplicación
 export const routes: Routes = [
     {path: '', redirectTo:'/general/dashboard', pathMatch:"full"},
     {path: 'signUp', component: SignupComponent},

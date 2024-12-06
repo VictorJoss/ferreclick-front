@@ -19,6 +19,7 @@ export class AdminCategoriesComponent implements OnInit{
     this.cargarCategorias();
   }
 
+  // Metodo para cargar todas las categorias
   cargarCategorias():void{
     this.categoryService.getCategories().subscribe({
       next: (response) => {
@@ -30,10 +31,12 @@ export class AdminCategoriesComponent implements OnInit{
     })
   }
 
+  // Metodo para viajar a ala ruta de crear categoria
   irACrearCategoria():void{
     this.router.navigate(['/admin/category/create'])
   }
 
+  // Metodo para borrar una categoria
   deleteCategory(id: number): void {
     this.categoryService.deleteCategoryById(id).subscribe({
       next: (response) => {
@@ -46,6 +49,7 @@ export class AdminCategoriesComponent implements OnInit{
     });
   }
 
+  // Metodo para ir a la ruta de editar categoria
   goToEditCategory(id:number):void{
     this.router.navigate(['/admin/category/edit', id])
   }
