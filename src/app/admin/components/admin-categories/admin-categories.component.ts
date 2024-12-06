@@ -45,4 +45,8 @@ export class AdminCategoriesComponent implements OnInit{
       }
     });
   }
+
+  goToEditCategory(id:number):void{
+    this.router.navigate(['/admin/category/edit', id])
+  }
 }

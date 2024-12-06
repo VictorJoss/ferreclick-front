@@ -30,9 +30,17 @@ export class CategoryService {
     });
   }
 
+  uploadCategory(category:any): Observable<any> {
+    return this.http.put<any>(`${BASIC_URL}api/product-categories`,category ,{
+      headers: this.apiService.createAuthorizationHeader()
+    });
+  }
+
   deleteCategoryById(categoryId: number): Observable<any> {
     return this.http.delete<any>(`${BASIC_URL}api/product-categories/${categoryId}`, {
       headers: this.apiService.createAuthorizationHeader()
     });
   }
+
+  // {id,nombre,descripcion,[]} --> DTO
 }
