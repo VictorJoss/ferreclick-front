@@ -208,8 +208,8 @@ export class ChartDisplayComponent implements OnInit{
     const labels = data.map(item => item.label);
     const values = data.map(item => item.value);
 
-    this.pieChartData2.labels = labels;
-    this.pieChartData2.datasets[0].data = values;
+    this.pieChartData2.labels = ['Hola','Chao'];
+    this.pieChartData2.datasets[0].data = [1,2];
     this.pieChart?.update();
   }
 }

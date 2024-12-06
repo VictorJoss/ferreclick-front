@@ -1,30 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { NavbarComponent } from '../admin-navbar/navbar.component';
-import { HttpClient } from '@angular/common/http';
+import { ChartDisplayComponent } from "../chart-display/chart-display.component";
+import { MetricsComponent } from "../metrics/metrics.component";
 
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [NavbarComponent],
+  imports: [NavbarComponent, ChartDisplayComponent, MetricsComponent],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css'
 })
 export class DashboardComponent{
-  archivos: any[] = [];
-
-  constructor(private http: HttpClient) {}
-
-  ngOnInit(): void {
-    this.cargarDatos();
-  }
-
-  cargarDatos() {
-    this.http.get<any[]>('http://localhost:8080/api/contar-lineas').subscribe(data => {
-      this.archivos = data;
-    }, error => {
-      console.error('Error al obtener los datos:', error);
-    });
-  }
-  
 }

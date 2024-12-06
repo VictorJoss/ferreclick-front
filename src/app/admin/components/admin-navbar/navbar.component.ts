@@ -13,12 +13,5 @@ export class NavbarComponent {
 
   constructor(
     private router:Router
-  ){
-
-  }
-
-  goToAnalytics():void{
-    this.router.navigate(["/admin/analytics"])
-  }
-
+  ){}
 }

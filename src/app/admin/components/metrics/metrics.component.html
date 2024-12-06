@@ -1,0 +1,60 @@
+<section class="flex flex-col items-center">
+
+    <!-- Titulo -->
+    <div class="w-full h-fit flex items-center">
+        <h1 class="p-6 text-6xl font-bold md:text-8xl text-primary">Metricas</h1>
+    </div>
+
+    <!-- Grafico de Metricas -->
+    <div>
+        @if (isBrowser) {
+            <div class="flex flex-col items-center mb-2">
+                <!-- Grafica Metrica -->
+                <div class="bg-white p-4 rounded-lg shadow">
+                    <h3 class="text-center mb-4 text-gray-700">Metricas de Documentacion FrontEnd</h3>
+                    <canvas
+                      baseChart
+                      #pieChart="base-chart"
+                      [data]="pieChartData"
+                      [options]="pieChartOptions"
+                      [type]="'pie'"
+                    >
+                    </canvas>
+                  </div>
+
+
+                  <!-- Total de la Metrica -->
+                   <div class="flex">
+                        <h2 class="p-6 text-4xl">{{this.lineasDeCodigoComentadas}}/{{this.lineasDeCodigo}} = {{this.totalMetrica}}%</h2>
+                   </div>
+            </div>
+        }
+    </div>
+
+
+
+    <!-- Tabla Metricas -->
+    <div class="w-full max-h-96 overflow-x-auto p-6 mb-6">
+        <table class="table-auto w-full border-collapse border border-gray-300 text-sm">
+          <thead>
+            <tr class="bg-gray-200 text-left">
+              <th class="px-4 py-2 border border-gray-300">Nombre del Archivo</th>
+              <th class="px-4 py-2 border border-gray-300">Total de Líneas</th>
+              <th class="px-4 py-2 border border-gray-300">Líneas de Código</th>
+              <th class="px-4 py-2 border border-gray-300">Líneas de Comentario</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (archivo of archivos; track $index) {
+                <tr class="hover:bg-gray-100 even:bg-gray-50 odd:bg-white">
+                <td class="px-4 py-2 border border-gray-300">{{ archivo.nombreArchivo }}</td>
+                <td class="px-4 py-2 border border-gray-300">{{ archivo.totalLineas }}</td>
+                <td class="px-4 py-2 border border-gray-300">{{ archivo.lineasCodigo }}</td>
+                <td class="px-4 py-2 border border-gray-300">{{ archivo.lineasComentario }}</td>
+                </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+      
+</section>
