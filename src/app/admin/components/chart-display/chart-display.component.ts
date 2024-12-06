@@ -185,9 +185,9 @@ export class ChartDisplayComponent implements OnInit{
       this.barChart?.update();
     });
   
-    this.analyticsService.getCategoryDistribution().subscribe(data => {
-      const labels = data.map(item => item.categoryName);
-      const values = data.map(item => item.count);
+    this.analyticsService.getTopProducts().subscribe(data => {
+      const labels = data.map(item => item.productName);
+      const values = data.map(item => item.totalSold);
       this.pieChartData.labels = labels;
       this.pieChartData.datasets[0].data = values;
       this.pieChartData.datasets[0].label = "Productos más agregados al carrito"
