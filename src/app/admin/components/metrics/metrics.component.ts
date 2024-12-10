@@ -15,7 +15,7 @@ import { isPlatformBrowser } from '@angular/common';
 export class MetricsComponent implements OnInit{
   // Variables para las graficas y metricas
   @ViewChild('pieChart') pieChart?: BaseChartDirective;
-  @ViewChild('pieChart') pieChart2?: BaseChartDirective;
+  @ViewChild('pieChart2') pieChart2?: BaseChartDirective;
   archivos: any[] = [];
   archivos2: any[] = [];
   isBrowser: boolean;
